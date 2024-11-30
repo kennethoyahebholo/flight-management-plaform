@@ -1,0 +1,126 @@
+.dashboardHeader {
+  width: 100%;
+  &__activityBar {
+    width: 100%;
+    background: linear-gradient(200deg, #6f1f13 10%, #6f1f13 90%, #912c1d);
+    backdrop-filter: blur(24px);
+    border-bottom: 1px solid rgba(237, 237, 237, 1);
+    padding-top: 27px;
+    padding-bottom: 27px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right: 24px;
+    padding-left: 24px;
+    position: relative;
+    z-index: 9999;
+  }
+  &__right {
+    width: fit-content;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 28px;
+  }
+  &__hamburger {
+    margin-right: 10px;
+  }
+
+  &__clickable {
+    cursor: pointer;
+    display: none;
+  }
+  &__avatar {
+    display: none;
+  }
+  &__avatarGroup {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    visibility: hidden;
+  }
+
+  &__avatarImage {
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    border-radius: 100%;
+  }
+
+  &__avatarArrow {
+    display: inline-block;
+    transform: rotate(-90deg);
+    transition: transform 0.3s ease;
+    &--active {
+      display: inline-block;
+      transform: rotate(90deg);
+      transition: transform 0.3s ease;
+    }
+  }
+
+  &__collapseIcon {
+    display: none;
+  }
+
+  @media only screen and (min-width: 1200px) {
+    &__activityBar {
+      justify-content: flex-end;
+      padding-right: 32px;
+      padding-left: 32px;
+    }
+    &__name {
+      display: block;
+    }
+    &__activePage {
+      display: block;
+    }
+    &__left {
+      display: none;
+    }
+    &__right {
+      width: 100%;
+    }
+    &__clickable {
+      display: block;
+    }
+    &__avatarGroup {
+      visibility: visible;
+    }
+    &__avatar {
+      display: flex;
+      align-items: center;
+    }
+    &__hamburger {
+      display: none;
+    }
+    &__emblem {
+      display: none;
+    }
+
+    &__collapseIcon {
+      position: fixed;
+      top: 36px;
+      left: -12px;
+      background-color: white;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+
+      &--collapsed {
+        transform: rotate(180deg);
+      }
+
+      &--open {
+        transform: rotate(0deg);
+      }
+    }
+  }
+}

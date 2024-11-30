@@ -1,0 +1,67 @@
+.inputWrapper {
+  position: relative;
+
+  &__placeholder {
+    position: absolute;
+    color: #c4c4c4;
+    left: 18px;
+    font-size: 16px;
+    line-height: 24.59px;
+    pointer-events: none;
+    transform: translateY(-50%);
+    transition: 0.2s ease-in;
+    top: 50%;
+    background-color: transparent;
+    z-index: 1;
+    font-family: ManropeRegular !important
+  ;
+
+    &--focused {
+      padding: 0 15px;
+      top: -0.8rem;
+      left: 15px;
+      transform: translateY(0);
+      font-size: 14px;
+      background: white;
+      color: #828282;
+      z-index: 2;
+    }
+  }
+
+  &__container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    position: relative;
+  }
+
+  &__input {
+    box-sizing: border-box;
+    border: 0.5px solid #ababab;
+    font-size: 18px;
+    line-height: 30.05px;
+    width: 100%;
+    min-height: 40px;
+    outline: none;
+    padding: 10px 18px;
+    border-radius: 5px;
+    background-color: transparent;
+    color: #424242;
+    z-index: 0; /* Make sure the input is behind the placeholder */
+    position: relative;
+  }
+
+  &__passIcon {
+    position: absolute;
+    top: 50%;
+    right: 15px;
+    transform: translateY(-50%);
+    cursor: pointer;
+  }
+
+  &__error {
+    color: red;
+    font-size: 10px;
+    position: absolute;
+  }
+}

@@ -1,0 +1,88 @@
+.loginWrapper {
+  color: #ffffff;
+
+  &__inputWrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    margin-bottom: 16px;
+  }
+
+  &__forgotPasswordAndRememberMeWrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &__checkbox {
+    width: 22px;
+    height: 20px;
+    border: 0.5px solid #ababab;
+    border-radius: 4px;
+  }
+
+  &__forgotPassword {
+    font-family: ManropeRegular;
+    font-size: 14px;
+    line-height: 19.12px;
+    text-align: left;
+    margin-bottom: 0;
+    padding: 0;
+    cursor: pointer;
+    color: #7d7d7d;
+  }
+
+  &__rememberMeWrapper {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+  }
+
+  &__rememberMe {
+    font-family: ManropeRegular;
+    font-size: 14px;
+    line-height: 19.12px;
+    text-align: left;
+    margin-bottom: 0;
+    padding: 0;
+    color: #7d7d7d;
+  }
+
+  &__btnWrapper {
+    margin-top: 28px;
+    width: 100%;
+  }
+
+  &__btn {
+    width: 100% !important;
+    border-radius: 8px !important;
+    font-size: 18px !important;
+    font-family: ManropeBold !important;
+  }
+
+  &__registerHereWrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 16px;
+    color: #7d7d7d;
+    font-size: 14px;
+    line-height: 21px;
+    letter-spacing: -0.04em;
+    text-align: center;
+  }
+
+  &__registerHere {
+    color: #0d405d;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  @media (min-width: 768px) {
+    &__btn {
+      font-size: 24px;
+      line-height: 32.78px;
+    }
+  }
+}

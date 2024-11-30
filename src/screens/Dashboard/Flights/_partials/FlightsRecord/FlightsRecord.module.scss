@@ -1,0 +1,43 @@
+.flightsRecordWrapper {
+  width: 100%;
+  height: 100%;
+
+  &__titleAndBtnWrapper {
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-bottom: 32px;
+    gap: 12px;
+  }
+
+  &__title {
+    visibility: visible;
+    flex-grow: 1;
+    font-size: 18px;
+    line-height: 24px;
+    font-family: ManropeBold;
+    color: #353542;
+  }
+
+  &__leftButton {
+    padding: 0 !important;
+    display: flex;
+    flex-direction: row-reverse;
+    border-radius: 8px !important;
+    padding: 10px 16px !important;
+    gap: 8px;
+    width: fit-content;
+  }
+
+  @media only screen and (min-width: 480px) {
+    &__titleAndBtnWrapper {
+      flex-direction: row;
+      align-items: center;
+    }
+  }
+
+  @media only screen and (min-width: 1200px) {
+    // padding: 67px 50px;
+  }
+}

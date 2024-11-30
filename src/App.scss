@@ -1,0 +1,72 @@
+@font-face {
+  font-family: ManropeLight;
+  src: url('../public/fonts/Manrope-Light.ttf');
+}
+
+@font-face {
+  font-family: ManropeRegular;
+  src: url('../public/fonts/Manrope-Regular.ttf');
+}
+
+@font-face {
+  font-family: ManropeMedium;
+  src: url('../public/fonts/Manrope-Medium.ttf');
+}
+
+@font-face {
+  font-family: ManropeSemiBold;
+  src: url('../public/fonts/Manrope-SemiBold.ttf');
+}
+
+@font-face {
+  font-family: ManropeBold;
+  src: url('../public/fonts/Manrope-Bold.ttf');
+}
+
+@font-face {
+  font-family: PoppinsRegular;
+  src: url('../public/fonts/Poppins-Regular.ttf');
+}
+
+@font-face {
+  font-family: PoppinsBold;
+  src: url('../public/fonts/Poppins-Bold.ttf');
+}
+
+.App {
+  height: 100vh;
+  font-family: ManropeRegular;
+  margin: auto;
+  max-width: 2000px;
+  // background: #04101f;
+  // background: linear-gradient(298.54deg, #194e69 -7.7%, #061626 97.12%);
+
+  /* // Scrollbar design below */
+  /* Scrollbar width */
+  ::-webkit-scrollbar,
+  scrollbar-width {
+    width: 4px;
+    height: 4px;
+  }
+  /* Scrollbar Track */
+  ::-webkit-scrollbar-track {
+    background: none;
+    border-radius: 10px;
+  }
+  scrollbar-track {
+    background: none;
+    border-radius: 10px;
+  }
+  /* Scrollbar Handle */
+  ::-webkit-scrollbar-thumb,
+  scrollbar-thumb {
+    background: rgb(216, 216, 216);
+    border-radius: 10px;
+    background-clip: padding-box;
+  }
+  /* Scrollbar Handle on hover */
+  ::-webkit-scrollbar-thumb:hover,
+  scrollbar-thumb:hover {
+    background: rgb(172, 172, 172);
+  }
+}

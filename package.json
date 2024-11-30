@@ -2,7 +2,9 @@
   "name": "switch-air",
   "version": "0.1.0",
   "private": true,
+  "proxy": "https://flight-api-rdtr.onrender.com/",
   "dependencies": {
+    "@reduxjs/toolkit": "^2.4.0",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
@@ -10,17 +12,35 @@
     "@types/node": "^16.18.121",
     "@types/react": "^18.3.12",
     "@types/react-dom": "^18.3.1",
+    "@types/react-redux": "^7.1.34",
+    "axios": "^1.7.8",
+    "bootstrap": "^5.3.3",
+    "formik": "^2.4.6",
+    "http-proxy-middleware": "^3.0.3",
+    "js-cookie": "^3.0.5",
+    "jwt-decode": "^4.0.0",
     "react": "^18.3.1",
+    "react-bootstrap": "^2.10.6",
+    "react-click-away-listener": "^2.2.4",
     "react-dom": "^18.3.1",
+    "react-paginate": "^8.2.0",
+    "react-redux": "^9.1.2",
+    "react-router-dom": "^7.0.1",
     "react-scripts": "5.0.1",
+    "react-select": "^5.8.3",
+    "react-toastify": "^10.0.6",
     "typescript": "^4.9.5",
-    "web-vitals": "^2.1.4"
+    "web-vitals": "^2.1.4",
+    "yup": "^1.4.0"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "serve -s build",
+    "dev": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "lint": "eslint --fix",
+    "prepare": "husky install"
   },
   "eslintConfig": {
     "extends": [
@@ -39,5 +59,19 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.16.0",
+    "@types/js-cookie": "^3.0.6",
+    "eslint": "^8.57.1",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-prettier": "^5.2.1",
+    "eslint-plugin-react": "^7.37.2",
+    "globals": "^15.12.0",
+    "husky": "^9.1.7",
+    "lint-staged": "^15.2.10",
+    "prettier": "^3.4.1",
+    "sass": "^1.81.0",
+    "typescript-eslint": "^8.16.0"
   }
 }

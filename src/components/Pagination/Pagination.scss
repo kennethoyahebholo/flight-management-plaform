@@ -1,0 +1,101 @@
+.pagination-comp {
+  background: #fff;
+  box-shadow: 0px 12px 20px 3px rgba(223, 224, 235, 0.02);
+  display: flex;
+  align-items: center;
+  padding: 16px;
+  @media (max-width: 500px) {
+    padding: 16px;
+  }
+  .page-count {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    @media (max-width: 500px) {
+      display: none;
+    }
+    span {
+      font-size: 14px;
+      color: rgba(145, 158, 171, 1);
+      font-family: ManropeMedium;
+      display: block;
+    }
+  }
+  .pagination-limit {
+    flex-grow: 1;
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 10px;
+    height: fit-content;
+    align-content: center;
+  }
+  .pagination-limit-dropdown {
+    width: 51px;
+    margin-top: 1px;
+  }
+  .pagination-limit-label {
+    font-size: 14px;
+    line-height: 20px;
+    color: rgba(0, 0, 0, 1);
+    margin-right: 5px;
+    font-family: ManropeMedium;
+    display: flex;
+    align-items: center;
+  }
+  .pagination {
+    justify-content: flex-end;
+    height: fit-content;
+    margin-bottom: 0 !important;
+    display: flex;
+    align-items: center;
+    .prev,
+    .next {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 0.3em;
+      border-radius: 4px;
+      border: none !important;
+    }
+    .each-page {
+      height: 36px;
+      width: 2.4em;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 0 0.3em;
+      border-radius: 4px;
+      border: 1px solid rgba(223, 227, 232, 1);
+      a {
+        font-size: 12px;
+        font-family: 'MailSansRomanSemiBold';
+        color: rgba(33, 43, 54, 1);
+      }
+    }
+    .break-me {
+      height: 36px;
+      width: 2.4em;
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      justify-content: center;
+      border: 1px solid rgba(223, 227, 232, 1);
+      border-radius: 4px;
+      margin: 0 0.3em;
+      a {
+        font-family: 'MailSansRomanSemiBold';
+        font-size: 12px;
+        color: rgba(33, 43, 54, 1);
+      }
+    }
+    .active {
+      border-radius: 4px;
+      color: #523b9f;
+      border: 1px solid rgba(89, 65, 169, 1);
+      a {
+        font-family: 'MailSansRomanSemiBold';
+        color: #523b9f;
+      }
+    }
+  }
+}

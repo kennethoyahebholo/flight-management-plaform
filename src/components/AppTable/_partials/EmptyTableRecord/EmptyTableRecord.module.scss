@@ -1,0 +1,42 @@
+.emptyTable {
+  height: 60vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .emptyTable__icon {
+    margin-bottom: 32px;
+    text-align: center;
+  }
+  .emptyTable__title {
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 24px;
+    text-align: right;
+    color: #1f1f2e;
+    margin-bottom: 6px;
+    text-align: center;
+    @media (max-width: 650px) {
+      font-size: 18px;
+    }
+  }
+  .emptyTable__subtitle {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 21px;
+    text-align: right;
+    margin-bottom: 35px;
+    color: rgba(93, 93, 93, 1);
+    text-align: center;
+    @media (max-width: 650px) {
+      font-size: 12px;
+    }
+  }
+  .emptyTable__button {
+    text-align: center;
+  }
+  .emptyTable__buttonItem {
+    max-width: 220px;
+    font-size: 12px;
+    padding: 12px auto;
+  }
+}

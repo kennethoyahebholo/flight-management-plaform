@@ -1,0 +1,77 @@
+.button-primary {
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  outline: none;
+  color: white;
+  border: 1px solid;
+  background: linear-gradient(298.54deg, #10496b -7.7%, #0d405d 97.12%);
+  transition:
+    background 0.6s ease-in-out,
+    transform 0.3s ease-in-out,
+    box-shadow 0.3s ease-in-out;
+  // transition: background 0.6s ease-in-out;
+  padding: 10px 18px;
+  border-radius: 8px;
+  font-size: 16px;
+  line-height: 24px;
+  // font-family: TitilliumWebSemiBold;
+  cursor: pointer;
+
+  &:active {
+    transform: scale(0.99);
+    cursor: pointer;
+  }
+
+  &:hover {
+    background: linear-gradient(298.54deg, #0d3953 -7.7%, #0a2e44 97.12%);
+  }
+
+  &:disabled {
+    background: linear-gradient(298.54deg, #15425e -7.7%, #256186 97.12%);
+    color: rgb(201, 201, 201);
+    cursor: not-allowed;
+  }
+}
+
+.button-outlined {
+  @extend .button-primary;
+  background: transparent;
+  color: white;
+  z-index: 1;
+  border: none !important;
+  border-radius: 0px;
+
+  position: relative;
+  &:hover {
+    background: #16243269;
+  }
+
+  &:disabled {
+    background: unset;
+    cursor: unset;
+  }
+}
+
+.button-outlined::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: -1;
+  padding: 1px;
+  border-radius: 8px;
+  background: linear-gradient(298.54deg, #10496b -7.7%, #0d405d 97.12%);
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0); /* Clip the gradient to the border */
+  -webkit-mask-composite: destination-out;
+  mask-composite: exclude;
+}

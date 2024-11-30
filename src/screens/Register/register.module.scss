@@ -1,0 +1,92 @@
+.register {
+  &__formGroup {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__formInput {
+    margin-top: 16px;
+  }
+
+  &__validation {
+    font-size: 12px;
+    line-height: 16px;
+    color: #5c5c8a;
+    margin-top: 16px;
+  }
+
+  &__validationText {
+    display: flex;
+    flex-direction: column;
+  }
+  &__validationCriteria {
+    display: flex;
+    align-items: center;
+    gap: 3px;
+  }
+
+  &__button {
+    margin-top: 28px !important;
+    width: 100% !important;
+    border-radius: 8px !important;
+    font-size: 18px !important;
+    font-family: ManropeBold !important;
+  }
+
+  &__instruction {
+    margin-top: 16px;
+    font-size: 12px;
+    color: #616e7c;
+    font-weight: 400;
+    text-align: center;
+  }
+
+  &__instructionLink {
+    color: #0d405d;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  @media only screen and (min-width: 480px) {
+    &__formGroup {
+      flex-direction: row;
+      justify-content: space-between;
+    }
+
+    &__groupedInput--top {
+      width: 48%;
+      margin-bottom: 0;
+    }
+    &__groupedInput--bottom {
+      width: 48%;
+    }
+
+    &__formInput {
+      margin-top: 24px;
+    }
+
+    &__validation {
+      margin-top: 8px;
+      margin-bottom: 33px;
+    }
+
+    &__validationText {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-gap: 10px;
+      text-align: justify;
+    }
+
+    &__instruction {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 16px;
+      color: #7d7d7d;
+      font-size: 14px;
+      line-height: 21px;
+      letter-spacing: -0.04em;
+      text-align: center;
+    }
+  }
+}

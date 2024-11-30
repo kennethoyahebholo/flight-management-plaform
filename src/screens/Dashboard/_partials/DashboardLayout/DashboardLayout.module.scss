@@ -1,0 +1,54 @@
+.dashboardLayout {
+  overflow: hidden;
+  &__sidebar {
+    display: none;
+    &--collapsed {
+      display: none;
+    }
+  }
+  &__body {
+    // overflow: hidden auto;
+    width: 100%;
+  }
+  &__children {
+    overflow: hidden auto;
+    background: linear-gradient(200deg, #2b6379 10%, #295064 25%, #2b6379);
+    backdrop-filter: blur(24px);
+    color: white;
+    height: calc(100vh - 71px);
+  }
+
+  @media screen and (min-width: 1200px) {
+    display: flex;
+
+    &__sidebar {
+      display: block;
+      height: 100vh;
+      min-width: 336px;
+      max-width: 336px;
+      transition:
+        min-width 0.3s ease,
+        max-width 0.3s ease;
+
+      &--collapsed {
+        display: block;
+        height: 100vh;
+        min-width: 80px;
+        max-width: 80px;
+        transition:
+          min-width 0.3s ease,
+          max-width 0.3s ease;
+      }
+    }
+
+    &__body {
+      background: #ffffff;
+    }
+
+    &__children {
+      height: calc(100vh - 103px);
+      background: whitesmoke !important;
+      color: #121212;
+    }
+  }
+}
