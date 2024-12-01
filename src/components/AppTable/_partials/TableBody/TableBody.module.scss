@@ -6,9 +6,6 @@
   &__odd {
     background-color: white;
   }
-  &__actionIconContainer {
-    position: relative;
-  }
   tr {
     cursor: pointer;
     td {
@@ -22,18 +19,6 @@
       div {
         display: flex !important;
         align-items: center;
-      }
-    }
-  }
-  &__actions {
-    margin-right: 20px;
-  }
-  &__actionsDisabled {
-    margin-right: 20px;
-    svg {
-      cursor: not-allowed;
-      path {
-        stroke: rgba(25, 25, 25, 0.2);
       }
     }
   }

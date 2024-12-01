@@ -1,14 +1,9 @@
 .WelcomeCardWrapper {
   display: flex;
   justify-content: space-between;
-  border: 1px solid #00a7d6;
+  border: 1px solid #0d405d;
   border-radius: 24px;
-  background: linear-gradient(
-    92.14deg,
-    rgba(35, 62, 80, 0.78) 9.99%,
-    rgba(149, 203, 226, 0.78) 98.09%,
-    rgba(170, 228, 252, 0.78) 110.65%
-  );
+  background: linear-gradient(92.14deg, #c4746832 9.99%, #95554c 98.09%, #d77262 110.65%);
   position: relative;
   overflow: hidden;
   margin-bottom: 37px;

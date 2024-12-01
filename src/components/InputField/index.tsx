@@ -21,12 +21,13 @@ const InputField = ({
   autoComplete,
   type,
   minValue,
-  maxValue
+  maxValue,
+  hidePlaceholderAnimation
 }: IInputField) => {
   const [showPassword, setShowPassword] = useState(false);
   return (
     <div className={styles?.inputWrapper}>
-      {placeholder && (
+      {placeholder && !hidePlaceholderAnimation && (
         <div
           className={`${styles?.inputWrapper__placeholder} ${value ? styles['inputWrapper__placeholder--focused'] : ''}`}>
           {placeholder}
@@ -41,6 +42,7 @@ const InputField = ({
           autoComplete={autoComplete}
           value={value}
           onChange={onChange}
+          placeholder={hidePlaceholderAnimation ? placeholder : ''}
           onBlur={onBlur}
           onFocus={onFocus}
           className={`${!error ? styles?.inputWrapper__input : styles?.inputWrapper__inputErrored}`}
@@ -54,9 +56,7 @@ const InputField = ({
             onClick={() => {
               setShowPassword(!showPassword);
             }}
-            className={styles?.inputWrapper__passIcon}
-            // className="input__container_pass-icon"
-          >
+            className={styles?.inputWrapper__passIcon}>
             {showPassword ? <EyeOpenIcon /> : <EyeClose />}
           </span>
         )}

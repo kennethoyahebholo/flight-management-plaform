@@ -13,8 +13,6 @@ const Modal = ({
   children,
   isShow,
   onClickAway,
-  // onClose,
-  // onBack,
   className,
   childrenClassName,
   contentClassName,
@@ -36,7 +34,7 @@ const Modal = ({
           <SuspenseLoader />
         </div>
       ) : (
-        <ClickAwayListener onClickAway={() => onClickAway()}>
+        <ClickAwayListener onClickAway={() => onClickAway?.()}>
           <div className={`${ModalStyles.modal__content}  ${contentClassName}`}>
             <div className={ModalStyles.modal__header}>
               {isShowBackButton && (

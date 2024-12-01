@@ -25,7 +25,8 @@ const DateInput = ({
 
   const handleFormChange = (date: Date) => {
     setStartDate(date);
-    onChange?.(date);
+    // eslint-disable-next-line no-unused-expressions, @typescript-eslint/no-unused-expressions
+    onChange && onChange(date);
   };
 
   const handleDivClick = () => {

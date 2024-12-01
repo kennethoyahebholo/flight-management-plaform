@@ -1,8 +1,6 @@
 export interface IPagination {
   count: number;
   pageSize: number;
-  setPage: any;
+  setPage: (pageNum: number) => void;
   page: number;
-  limitValue?: string;
-  setLimitValue?: any;
 }

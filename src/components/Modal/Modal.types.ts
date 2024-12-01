@@ -8,7 +8,7 @@ export interface IModal extends React.HTMLProps<HTMLDivElement> {
   isTopIcon?: boolean;
   isShowBackToLogin?: boolean;
   topIcon?: React.ReactNode;
-  onClickAway: () => void;
+  onClickAway?: () => void;
   onClose?: () => void;
   onBack?: () => void;
   isShowBackButton?: boolean;

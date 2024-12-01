@@ -12,13 +12,10 @@ const WelcomeCard = () => {
       <div className={styles?.WelcomeCardWrapper__left}>
         <h4 className={styles?.WelcomeCardWrapper__greetings}>Hello {user?.name}.</h4>
         <p className={styles?.WelcomeCardWrapper__message}>
-          Welcome to SEC03, your cybersecurity training hub! Strengthen your skills, protect your
-          organization, and secure the future with us.
+          Welcome to the Flight Management System! Manage flights effortlessly, streamline
+          operations, and explore the skies with confidence.
         </p>
       </div>
-      {/* <div className={styles?.WelcomeCardWrapper__right}>
-        <GlobeImg />
-      </div> */}
     </div>
   );
 };

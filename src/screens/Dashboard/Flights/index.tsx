@@ -14,7 +14,6 @@ const Flights = () => {
       <FlightsModalControl />
       <Routes>
         <Route path="/all" element={<FlightsRecord />} />
-
         <Route path="*" element={<NotFound />} />
       </Routes>
     </div>

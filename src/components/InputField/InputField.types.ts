@@ -16,4 +16,5 @@ export interface IInputField {
   minValue?: number | string;
   maxValue?: number | string;
   inputClass?: string;
+  hidePlaceholderAnimation?: boolean;
 }

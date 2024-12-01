@@ -17,7 +17,11 @@ export const topSidebarLinks: ISidebarLinkItem[] = [
   {
     title: 'Flights',
     linkTo: '/dashboard/flights/all?page=1',
-    activeLink: ['/dashboard/flights', '/dashboard/flights/all'],
+    activeLink: [
+      '/dashboard/flights',
+      '/dashboard/flights/all',
+      '/dashboard/flights/flight-details/:id'
+    ],
     icon: <SidebarFlightsIcon />,
     activeIcon: <SidebarFlightsIcon />,
     key: 'FLIGHTS'

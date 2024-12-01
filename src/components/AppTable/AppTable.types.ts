@@ -1,21 +1,32 @@
+import { ReactNode } from 'react';
+
+export interface ContentType {
+  capacity: number;
+  code: string;
+  departureDate: string;
+  id: string;
+  img: string;
+  status: string;
+}
+
 export interface IAppTableComp {
-  content?: any;
-  allColumn: any;
-  tableTitles: any;
-  page?: any;
-  pageSize: any;
-  count?: any;
-  setPage?: any;
+  content: ContentType[];
+  allColumn: string[];
+  tableTitles: Record<string, string>;
+  page?: number;
+  pageSize: number;
+  count?: number;
+  setPage: (pageNum: number) => void;
   loader?: boolean;
-  hasOnclick?: any;
-  actionIcon?: any;
-  emptyTableIcon?: any;
-  emptyTableTitle?: string;
-  emptyTableSubTitle?: string;
-  showActionBtn?: boolean;
-  onActionButtonPress?: any;
-  btnTitle?: string;
-  tableFrameMinHeight?: string;
-  setLimitValue?: any;
-  limitValue?: string;
+  hasOnclick?: (rowData: {
+    capacity: number;
+    code: string;
+    departureDate: string;
+    id: string;
+    img: string;
+    status: string;
+  }) => void;
+  handleActionButtonClick?: (id: string) => void;
+  hasActionButton?: boolean;
+  actionButton?: ReactNode;
 }

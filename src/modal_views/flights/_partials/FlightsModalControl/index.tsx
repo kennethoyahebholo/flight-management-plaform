@@ -1,18 +1,19 @@
 import React from 'react';
-
-import useToast from '../../../../utils/helpers/general/useToast';
-
 import { useNavigate } from 'react-router-dom';
+
 import { useAppDispatch, useAppSelector } from '../../../../redux/hooks';
 import {
   setActiveFlightsModal,
   setCreateOrUpdateFlightApiData,
-  setIsShowFlightsModal
+  setIsShowFlightsModal,
+  setRefetchGetFlightsData
 } from '../../../../redux/slices/flights';
 import AddOrUpdateFlightModal from '../../AddOrUpdateFlightModal';
+import { ResponseModal } from '../../../global';
+import SuccessIcon from '../../../../assets/svg_component/SuccessIcon';
+import DeleteFlightModal from '../../DeleteFlightModal';
 
 const FlightsModalControl = () => {
-  const toast = useToast();
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const { activeFlightsModal, isShowFlightsModal, createOrUpdateFlightApiData } = useAppSelector(
@@ -32,25 +33,50 @@ const FlightsModalControl = () => {
         onCloseAddOrUpdateFlightsModal={onModalClose}
         onClickAwayAddOrUpdateFlightsModal={onModalClose}
         createOrUpdateFlightApiData={createOrUpdateFlightApiData}
-        // handleSuccessAction={(data: any) => {
-        //     if (createTenantApiData?.isEditTenantDetails) {
-        //       handleUpdateTenantDetails({ ...createTenantApiData, ...data });
-        //     } else {
-        //       dispatch(setCreateTenantApiData({ ...createTenantApiData, ...data }));
-        //       dispatch(setActiveTenantsModal('reviewScheduleModal'));
-        //     }
-        // }}
-        // getAllRealtorPropertyPaginatedLoading={getAllRealtorPropertyPaginatedLoading}
-        // handleChangePaymentAccount={() => {
-        //   dispatch(setActiveTenantsModal('accountSetupModal'));
-        // }}
-        // updateTenantLoading={updateTenantLoading}
+      />
+    );
+
+    const addOrUpdateFlightsSuccessModal = (
+      <ResponseModal
+        isShow
+        isShowCloseIcon={false}
+        title={
+          createOrUpdateFlightApiData?.isEditDetails
+            ? 'Flight Successfully Updated! '
+            : 'Flight Successfully Added!'
+        }
+        icon={<SuccessIcon />}
+        subTitle={
+          createOrUpdateFlightApiData?.isEditDetails
+            ? 'The  flight has been updated successfully.'
+            : 'The new flight has been added to the system and is now ready for management.'
+        }
+        btnTitle="Go to Flights"
+        onClick={() => {
+          navigate('/dashboard/flights/all?page=1');
+          dispatch(setRefetchGetFlightsData(true));
+          onModalClose();
+        }}
+      />
+    );
+
+    const deleteFlightModal = (
+      <DeleteFlightModal
+        showDeleteFlightModal={isShowFlightsModal}
+        onClickAwayDeleteFlightModal={onModalClose}
+        onCloseDeleteFlightModal={onModalClose}
+        onCancelDeleteFlightModal={onModalClose}
+        createOrUpdateFlightApiData={createOrUpdateFlightApiData}
       />
     );
 
     switch (activeFlightsModal) {
       case 'addOrUpdateFlightsModal':
         return addOrUpdateFlightsModal;
+      case 'addOrUpdateFlightsSuccessModal':
+        return addOrUpdateFlightsSuccessModal;
+      case 'deleteFlightModal':
+        return deleteFlightModal;
       default:
         return null;
     }

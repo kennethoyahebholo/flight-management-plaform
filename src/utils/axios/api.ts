@@ -1,9 +1,9 @@
 import axios from 'axios';
-import { API_BASE_URL } from './config';
+// import { API_BASE_URL } from './config';
 import { getUserTokenCookie, removeUserTokenCookie } from '../helpers/auth/cookieUtility';
 
 const api = axios.create({
-  baseURL: ''
+  baseURL: 'http://localhost:3000'
 });
 
 // Request Interceptor

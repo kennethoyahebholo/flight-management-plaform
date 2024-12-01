@@ -21,27 +21,7 @@
       display: block;
     }
   }
-  .pagination-limit {
-    flex-grow: 1;
-    display: flex;
-    justify-content: flex-end;
-    padding-right: 10px;
-    height: fit-content;
-    align-content: center;
-  }
-  .pagination-limit-dropdown {
-    width: 51px;
-    margin-top: 1px;
-  }
-  .pagination-limit-label {
-    font-size: 14px;
-    line-height: 20px;
-    color: rgba(0, 0, 0, 1);
-    margin-right: 5px;
-    font-family: ManropeMedium;
-    display: flex;
-    align-items: center;
-  }
+
   .pagination {
     justify-content: flex-end;
     height: fit-content;
@@ -68,7 +48,7 @@
       border: 1px solid rgba(223, 227, 232, 1);
       a {
         font-size: 12px;
-        font-family: 'MailSansRomanSemiBold';
+        font-family: 'ManropeSemiBold';
         color: rgba(33, 43, 54, 1);
       }
     }
@@ -83,7 +63,7 @@
       border-radius: 4px;
       margin: 0 0.3em;
       a {
-        font-family: 'MailSansRomanSemiBold';
+        font-family: 'ManropeSemiBold';
         font-size: 12px;
         color: rgba(33, 43, 54, 1);
       }
@@ -93,7 +73,7 @@
       color: #523b9f;
       border: 1px solid rgba(89, 65, 169, 1);
       a {
-        font-family: 'MailSansRomanSemiBold';
+        font-family: 'ManropeSemiBold';
         color: #523b9f;
       }
     }

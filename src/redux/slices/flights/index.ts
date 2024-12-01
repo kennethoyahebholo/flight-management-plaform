@@ -1,19 +1,43 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { getFlights } from './features';
+import {
+  createFlight,
+  createFlightWithPhoto,
+  deleteFlightDetails,
+  getFlightDetails,
+  getFlights,
+  updateFlightDetails
+} from './features';
+import { ICreateFlight } from './interface';
 
 //define the interface for all the states that FlightsSlice is going to be using
 export interface FlightsSliceState {
   isGettingFlights: boolean;
-  activeFlightsModal: 'addOrUpdateFlightsModal' | '';
+  activeFlightsModal:
+    | 'addOrUpdateFlightsModal'
+    | 'addOrUpdateFlightsSuccessModal'
+    | 'deleteFlightModal'
+    | '';
   isShowFlightsModal: boolean;
-  createOrUpdateFlightApiData: any;
+  createOrUpdateFlightApiData: ICreateFlight;
+  isCreatingFlightWithPhoto: boolean;
+  isCreatingFlight: boolean;
+  refetchGetFlightsData: boolean;
+  isGettingFlightDetails: boolean;
+  isUpdatingFlightDetails: boolean;
+  isDeletingFlightDetails: boolean;
 }
 
 const initialState: FlightsSliceState = {
   isGettingFlights: false,
   activeFlightsModal: '',
   isShowFlightsModal: false,
-  createOrUpdateFlightApiData: {}
+  createOrUpdateFlightApiData: {},
+  isCreatingFlightWithPhoto: false,
+  isCreatingFlight: false,
+  refetchGetFlightsData: false,
+  isGettingFlightDetails: false,
+  isUpdatingFlightDetails: false,
+  isDeletingFlightDetails: false
 };
 
 //create the slice
@@ -23,7 +47,9 @@ export const FlightsSlice = createSlice({
   reducers: {
     setActiveFlightsModal: (
       state: FlightsSliceState,
-      action: PayloadAction<'addOrUpdateFlightsModal' | ''>
+      action: PayloadAction<
+        'addOrUpdateFlightsModal' | 'addOrUpdateFlightsSuccessModal' | 'deleteFlightModal' | ''
+      >
     ) => {
       const { payload } = action;
       state.activeFlightsModal = payload;
@@ -34,9 +60,17 @@ export const FlightsSlice = createSlice({
       state.isShowFlightsModal = payload;
     },
 
-    setCreateOrUpdateFlightApiData: (state: FlightsSliceState, action: PayloadAction<any>) => {
+    setCreateOrUpdateFlightApiData: (
+      state: FlightsSliceState,
+      action: PayloadAction<ICreateFlight>
+    ) => {
       const { payload } = action;
       state.createOrUpdateFlightApiData = payload;
+    },
+
+    setRefetchGetFlightsData: (state: FlightsSliceState, action: PayloadAction<boolean>) => {
+      const { payload } = action;
+      state.refetchGetFlightsData = payload;
     }
   },
 
@@ -50,14 +84,72 @@ export const FlightsSlice = createSlice({
       .addCase(getFlights.rejected, (state: FlightsSliceState) => {
         state.isGettingFlights = false;
       })
-      .addCase(getFlights.fulfilled, (state: FlightsSliceState, action: PayloadAction<any>) => {
+      .addCase(getFlights.fulfilled, (state: FlightsSliceState) => {
         state.isGettingFlights = false;
-        // state.users = action.payload.data;
+      })
+
+      // create flights without photo
+      .addCase(createFlight.pending, (state: FlightsSliceState) => {
+        state.isCreatingFlight = true;
+      })
+      .addCase(createFlight.rejected, (state: FlightsSliceState) => {
+        state.isCreatingFlight = false;
+      })
+      .addCase(createFlight.fulfilled, (state: FlightsSliceState) => {
+        state.isCreatingFlight = false;
+      })
+
+      // create flights with photo
+      .addCase(createFlightWithPhoto.pending, (state: FlightsSliceState) => {
+        state.isCreatingFlightWithPhoto = true;
+      })
+      .addCase(createFlightWithPhoto.rejected, (state: FlightsSliceState) => {
+        state.isCreatingFlightWithPhoto = false;
+      })
+      .addCase(createFlightWithPhoto.fulfilled, (state: FlightsSliceState) => {
+        state.isCreatingFlightWithPhoto = false;
+      })
+
+      // get flight details
+      .addCase(getFlightDetails.pending, (state: FlightsSliceState) => {
+        state.isGettingFlightDetails = true;
+      })
+      .addCase(getFlightDetails.rejected, (state: FlightsSliceState) => {
+        state.isGettingFlightDetails = false;
+      })
+      .addCase(getFlightDetails.fulfilled, (state: FlightsSliceState) => {
+        state.isGettingFlightDetails = false;
+      })
+
+      // update flight details
+      .addCase(updateFlightDetails.pending, (state: FlightsSliceState) => {
+        state.isUpdatingFlightDetails = true;
+      })
+      .addCase(updateFlightDetails.rejected, (state: FlightsSliceState) => {
+        state.isUpdatingFlightDetails = false;
+      })
+      .addCase(updateFlightDetails.fulfilled, (state: FlightsSliceState) => {
+        state.isUpdatingFlightDetails = false;
+      })
+
+      // delete flight details
+      .addCase(deleteFlightDetails.pending, (state: FlightsSliceState) => {
+        state.isDeletingFlightDetails = true;
+      })
+      .addCase(deleteFlightDetails.rejected, (state: FlightsSliceState) => {
+        state.isDeletingFlightDetails = false;
+      })
+      .addCase(deleteFlightDetails.fulfilled, (state: FlightsSliceState) => {
+        state.isDeletingFlightDetails = false;
       });
   }
 });
 
 export default FlightsSlice.reducer;
 
-export const { setIsShowFlightsModal, setCreateOrUpdateFlightApiData, setActiveFlightsModal } =
-  FlightsSlice.actions;
+export const {
+  setIsShowFlightsModal,
+  setCreateOrUpdateFlightApiData,
+  setActiveFlightsModal,
+  setRefetchGetFlightsData
+} = FlightsSlice.actions;

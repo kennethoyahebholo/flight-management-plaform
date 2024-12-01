@@ -7,7 +7,7 @@
     color: #101828;
     text-align: center;
     font-size: 24px;
-    font-family: MailSansRomanSemiBold;
+    font-family: ManropeSemiBold;
     margin-bottom: 24px;
   }
 
@@ -59,7 +59,7 @@
 
   &__changeAccount {
     color: #5941a9;
-    font-family: MailSansRomanMedium;
+    font-family: ManropeMedium;
     font-size: 12px;
     line-height: 16px;
     letter-spacing: -0.02em;
@@ -95,7 +95,7 @@
     background: transparent;
     text-decoration: underline;
     color: #808080;
-    font-family: MailSansRomanMedium;
+    font-family: ManropeMedium;
     font-size: 15px;
     line-height: 16px;
     text-align: left;
@@ -130,7 +130,7 @@
   }
 
   &__guaranteeMessageText {
-    font-family: MailSansRomanRegular;
+    font-family: ManropeRegular;
     font-size: 14px;
     line-height: 24px;
     letter-spacing: -0.02em;
@@ -139,8 +139,57 @@
 
     &--span {
       color: #5941a9 !important;
-      font-family: MailSansRomanMedium !important;
+      font-family: ManropeMedium !important;
       cursor: pointer;
+    }
+  }
+
+  &__inputCustom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px;
+    border: 0.5px solid #d7d7d7;
+    height: 53px;
+    border-radius: 8px;
+    width: 100%;
+    position: relative;
+    background-color: rgba(246, 246, 246, 1);
+    color: rgba(25, 25, 25, 1);
+    overflow: hidden; /* Ensures the file input does not extend beyond the styled box */
+  }
+
+  &__inputCustomValue {
+    font-size: 16px;
+    color: #5d5d5d;
+    width: 100%;
+    border: none;
+    outline: none;
+    padding: 0;
+    margin: 0;
+    background-color: transparent;
+    cursor: pointer;
+
+    &::-webkit-file-upload-button {
+      visibility: hidden;
+    }
+
+    &:before {
+      content: 'Choose a file';
+      display: inline-block;
+      background: #f3f4f6;
+      border: 0.5px solid #d7d7d7;
+      padding: 6px 12px;
+      border-radius: 4px;
+      color: #5d5d5d;
+      cursor: pointer;
+      font-size: 14px;
+      text-align: center;
+      margin-right: 8px;
+    }
+
+    &:hover:before {
+      background: #eceff1;
     }
   }
 

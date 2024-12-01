@@ -1,0 +1,314 @@
+.FlightDetails {
+  &__pageHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 24px;
+  }
+
+  &__backLink {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    text-decoration: none;
+    color: #475467;
+    font-size: 14px;
+    line-height: 17.92px;
+    font-family: ManropeMedium;
+  }
+
+  &__editBtn {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    background: linear-gradient(298.54deg, #10496b -7.7%, #0d405d 97.12%);
+    padding: 8px 20px;
+    border-radius: 8px;
+    color: white !important;
+  }
+
+  &__pageBody {
+    padding: 24px;
+  }
+
+  &__ctaWrapper {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    border: 1px solid #ededed;
+    background-color: white;
+    padding: 16px;
+    border-radius: 8px;
+    margin-bottom: 32px;
+    flex-wrap: wrap;
+    gap: 16px;
+    overflow-x: auto;
+  }
+
+  &__nameAndDateWrapper {
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  &__nameAndActiveWrapper {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  &__name {
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: -2%;
+    color: #191919;
+    font-family: MailSansRomanMedium;
+  }
+
+  &__status {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    border-radius: 16px;
+    padding: 4px 12px;
+    font-size: 12px;
+    line-height: 20px;
+    letter-spacing: -2%;
+    font-family: MailSansRomanMedium;
+
+    &--active {
+      background-color: #e0f9f0;
+      border: 1px solid #c2f5e3;
+      color: #029991;
+    }
+
+    &--inactive {
+      background-color: #f9e0e0;
+      border: 1px solid #f5c2c2;
+      color: #d92d20;
+    }
+  }
+
+  &__statusCircle {
+    min-width: 8px;
+    min-height: 8px;
+    max-width: 8px;
+    max-height: 8px;
+    border-radius: 50%;
+    border: 1.5px solid #ffffff;
+
+    &--active {
+      background: #029991;
+    }
+
+    &--inactive {
+      background: #d92d20;
+    }
+  }
+  &__joinDate {
+    font-family: MailSansRomanMedium;
+    font-size: 12px;
+    line-height: 16px;
+    letter-spacing: -0.02em;
+    text-align: left;
+    color: #959595;
+  }
+
+  &__ctaBtn {
+    border: 1px solid #d92d20;
+    background: #d92d200d;
+    padding: 6px 16px;
+    border-radius: 8px;
+    color: #d92d20;
+    font-family: MailSansRomanMedium;
+    cursor: pointer;
+    width: fit-content;
+    white-space: nowrap;
+    outline: none;
+  }
+
+  &__switchTabWrapper {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 24px;
+  }
+
+  &__switchTabLeft {
+    background-color: white;
+    padding: 16px;
+    border-radius: 8px;
+    border: 1px solid #ededed;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    height: fit-content;
+  }
+
+  &__switchTabRight {
+    background-color: white;
+    width: 100%;
+    border-radius: 8px;
+    border: 1px solid #ededed;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  &__switchTab {
+    background: #ededed;
+    padding: 8px;
+    border-radius: 8px;
+    color: #0b0b0b;
+    font-family: MailSansRomanSemiBold;
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: -0.02em;
+    text-align: left;
+    cursor: pointer;
+    border: none;
+    outline: none;
+
+    &--inactive {
+      background: transparent;
+      padding: 8px;
+      border-radius: 8px;
+      color: #0b0b0b;
+      font-family: MailSansRomanMedium;
+      font-size: 16px;
+      line-height: 24px;
+      letter-spacing: -0.02em;
+      text-align: left;
+      color: #808080;
+      cursor: pointer;
+      border: none;
+      outline: none;
+    }
+  }
+
+  &__switchTabRightHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px 16px 14px;
+    background: #f6f6f6;
+    border-radius: 8px 8px 0px 0px;
+    font-family: MailSansRomanMedium;
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: -0.02em;
+    text-align: left;
+    color: #0b0b0b;
+  }
+
+  &__editIcon {
+    cursor: pointer;
+  }
+
+  &__switchTabRightBody {
+    padding: 20px 16px;
+    border-radius: 0px 0px 8px 8px;
+  }
+
+  &__documentsWrapper {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 8px;
+    width: 100%;
+    overflow-x: auto;
+  }
+
+  &__emptyStateText {
+    font-size: 14px;
+    text-align: center;
+    color: #787878;
+  }
+
+  &__cardLabelAndTitle {
+    display: flex;
+    flex-wrap: wrap;
+    row-gap: 24px;
+    width: 100%;
+  }
+
+  &__cardCover {
+    flex: 0 0 100%;
+    max-width: 100%;
+    border-left: none;
+  }
+
+  &__cardLabel {
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: -0.02em;
+    text-align: left;
+    color: #5d5d5d;
+  }
+
+  &__cardTitle {
+    color: #393939;
+    font-family: ManropeMedium;
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: -0.02em;
+    text-align: left;
+    white-space: word-wrap;
+    word-wrap: break-word;
+  }
+
+  @media only screen and (min-width: 480px) {
+    &__name {
+      font-size: 25px;
+      line-height: 30px;
+    }
+
+    &__switchTabLeft {
+      width: 242px;
+    }
+
+    &__cardCover {
+      flex: 0 0 50%;
+      max-width: 50%;
+    }
+  }
+
+  @media only screen and (min-width: 768px) {
+    &__pageHeader {
+      //   padding: 32px 12px 24px 42px;
+    }
+
+    &__name {
+      font-size: 30px;
+      line-height: 38px;
+    }
+
+    &__pageBody {
+      padding: 32px;
+    }
+
+    &__switchTabWrapper {
+      flex-direction: row;
+    }
+
+    &__documentsWrapper {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 850px) {
+    &__cardCover {
+      flex: 0 0 33.333%;
+      max-width: 33.333%;
+    }
+  }
+
+  @media (min-width: 1300px) {
+    &__cardCover {
+      flex: 0 0 25%;
+      max-width: 25%;
+    }
+  }
+}
