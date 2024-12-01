@@ -8,6 +8,7 @@ import SuspenseLoader from '../SuspenseLoader';
 import EmptyTableRecord from './_partials/EmptyTableRecord';
 
 import Styles from './AppTable.module.scss';
+import EmptyStateIcon from '../../assets/svg_component/EmptyStateIcon';
 
 const AppTable = ({
   content,
@@ -66,7 +67,7 @@ const AppTable = ({
         </div>
       ) : (
         <EmptyTableRecord
-          // icon={emptyTableIcon}
+          icon={<EmptyStateIcon />}
           title={'No Record Found'}
           subtitle={'No flight record available'}
         />
