@@ -64,6 +64,7 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.16.0",
+    "@types/http-proxy-middleware": "^1.0.0",
     "@types/js-cookie": "^3.0.6",
     "eslint": "^8.57.1",
     "eslint-config-prettier": "^9.1.0",

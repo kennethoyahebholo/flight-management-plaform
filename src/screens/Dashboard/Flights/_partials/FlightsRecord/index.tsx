@@ -59,14 +59,14 @@ const FlightsRecord = () => {
       const errorMessage = actionResult.error?.message || ERROR_OCCURED_MESSAGE;
       toast.error(errorMessage);
     }
-
-    return () => {
-      dispatch(setRefetchGetFlightsData(false));
-    };
   };
 
   useEffect(() => {
     handleGetFlightData(pageNumber, limit, searchTerm, dispatch);
+
+    return () => {
+      dispatch(setRefetchGetFlightsData(false));
+    };
   }, [pageNumber, searchTerm, limit, refetchGetFlightsData]);
 
   const handleRowClick = (data: { id: string }) => {
@@ -102,23 +102,21 @@ const FlightsRecord = () => {
           />
         </div>
       </div>
-      {(flightData?.resources ?? []).length > 0 && (
-        <div className={styles.flightsRecordWrapper__searchInput}>
-          <InputField
-            type="text"
-            placeholder="Search by code..."
-            value={searchTerm}
-            onChange={(e) => {
-              const value = e.target.value;
-              // Allow only alphabets (uppercase and lowercase)
-              if (/^[a-zA-Z]*$/.test(value)) {
-                handleSearch(e);
-              }
-            }}
-            hidePlaceholderAnimation
-          />
-        </div>
-      )}
+      <div className={styles.flightsRecordWrapper__searchInput}>
+        <InputField
+          type="text"
+          placeholder="Search by code..."
+          value={searchTerm}
+          onChange={(e) => {
+            const value = e.target.value;
+            // Allow only alphabets (uppercase and lowercase)
+            if (/^[a-zA-Z]*$/.test(value)) {
+              handleSearch(e);
+            }
+          }}
+          hidePlaceholderAnimation
+        />
+      </div>
 
       <div className={styles.flightsRecordWrapper__table}>
         <AppTable
