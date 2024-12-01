@@ -1,0 +1,118 @@
+.datepicker {
+  position: relative;
+  border: 0.5px solid #d7d7d78e;
+  cursor: pointer;
+  border-radius: 6px;
+  height: 52px !important;
+
+  &__placeholder {
+    position: absolute;
+    color: #c4c4c4 !important;
+    left: 18px;
+    font-size: 16px;
+    line-height: 24.59px;
+    pointer-events: none;
+    transform: translateY(-50%);
+    transition: 0.2s ease-in;
+    top: 50%;
+    z-index: 1;
+    background-color: transparent;
+    font-family: ManropeRegular !important
+  ;
+
+    &--focused {
+      padding: 0 15px;
+      top: -0.8rem;
+      left: 15px;
+      transform: translateY(0);
+      font-size: 14px;
+      background: white;
+      color: #828282;
+      z-index: 1;
+    }
+  }
+  &_content {
+    position: relative;
+    height: 100%;
+    border: 0.1px solid #ababab9c;
+    border-radius: 5px;
+    &_item {
+      height: 100%;
+      width: 100%;
+      outline: none;
+      border: none;
+      padding: 16px;
+      font-size: 16px;
+      color: #191919;
+      background: transparent;
+    }
+    &_icon {
+      position: absolute;
+      top: 28%;
+      right: 15px;
+    }
+    .react-datepicker__day--selected {
+      background-color: red !important;
+      //   color: #ffffff !important;
+    }
+    .react-datepicker__day--keyboard-selected {
+      background-color: red !important;
+      //   color: #ffffff !important;
+    }
+    ::placeholder {
+      color: #b0b0b0;
+      line-height: 24px;
+      letter-spacing: -2%;
+      font-weight: 400;
+      /* Firefox */
+      font-size: 16px;
+    }
+    :-ms-input-placeholder {
+      /* Internet Explorer 10-11 */
+      font-weight: 400;
+      color: #b0b0b0;
+      line-height: 24px;
+      letter-spacing: -2%;
+      font-size: 16px;
+    }
+    ::-ms-input-placeholder {
+      /* Microsoft Edge */
+      font-weight: 400;
+      color: #b0b0b0;
+      line-height: 24px;
+      letter-spacing: -2%;
+      font-size: 16px;
+    }
+    &_label {
+      font-size: 14px;
+      color: #121212;
+      line-height: 20px;
+      letter-spacing: -2%;
+      margin-bottom: 2px;
+    }
+  }
+  input[disabled] {
+    color: rgb(84, 84, 84);
+  }
+  &_error {
+    position: absolute;
+    color: red !important;
+    font-size: 10px;
+  }
+}
+
+.default {
+  background-color: #ffffff;
+}
+
+.disabled {
+  background-color: #f6f6f6;
+  width: 100%;
+  cursor: not-allowed;
+  height: fit-content !important;
+  border-radius: 6px;
+}
+
+.errored {
+  border: 0.5px solid #ff5959 !important;
+}

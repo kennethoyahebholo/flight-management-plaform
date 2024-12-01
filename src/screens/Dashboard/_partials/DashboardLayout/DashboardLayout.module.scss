@@ -12,8 +12,6 @@
   }
   &__children {
     overflow: hidden auto;
-    background: linear-gradient(200deg, #2b6379 10%, #295064 25%, #2b6379);
-    backdrop-filter: blur(24px);
     color: white;
     height: calc(100vh - 71px);
   }

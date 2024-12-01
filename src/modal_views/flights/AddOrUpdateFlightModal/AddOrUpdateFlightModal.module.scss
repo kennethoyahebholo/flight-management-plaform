@@ -77,6 +77,11 @@
     gap: 16px;
   }
 
+  &__cancelBtn {
+    background: #eff0f1 !important;
+    color: #121212;
+  }
+
   &__addMoreFilesButtonWrapper {
     display: flex;
     align-items: center;

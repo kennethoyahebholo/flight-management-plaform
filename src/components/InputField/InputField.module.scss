@@ -12,7 +12,6 @@
     transition: 0.2s ease-in;
     top: 50%;
     background-color: transparent;
-    z-index: 1;
     font-family: ManropeRegular !important
   ;
 
@@ -24,7 +23,7 @@
       font-size: 14px;
       background: white;
       color: #828282;
-      z-index: 2;
+      z-index: 1;
     }
   }
 
@@ -38,6 +37,22 @@
   &__input {
     box-sizing: border-box;
     border: 0.5px solid #ababab;
+    font-size: 18px;
+    line-height: 30.05px;
+    width: 100%;
+    min-height: 40px;
+    outline: none;
+    padding: 10px 18px;
+    border-radius: 5px;
+    background-color: transparent;
+    color: #424242;
+    z-index: 0; /* Make sure the input is behind the placeholder */
+    position: relative;
+  }
+
+  &__inputErrored {
+    box-sizing: border-box;
+    border: 0.5px solid red;
     font-size: 18px;
     line-height: 30.05px;
     width: 100%;

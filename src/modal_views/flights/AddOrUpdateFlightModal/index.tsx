@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useFormik } from 'formik';
 import moment from 'moment';
 
@@ -6,8 +6,8 @@ import { IAddOrUpdateFlightModal, IFormData } from './AddOrUpdateFlightModal.typ
 import { AddOrUpdateFlightsModalValidationSchema } from './AddOrUpdateFlightsModal.validation';
 
 import AddOrUpdateFlightModalStyles from './AddOrUpdateFlightModal.module.scss';
-import useToast from '../../../utils/helpers/general/useToast';
-import { InputField, Modal, StyledButton } from '../../../components';
+// import useToast from '../../../utils/helpers/general/useToast';
+import { DateInput, InputField, Modal, StyledButton } from '../../../components';
 
 const AddOrUpdateFlightModal = ({
   isShowAddOrUpdateFlightsModal,
@@ -21,7 +21,7 @@ const AddOrUpdateFlightModal = ({
   //   handleChangePaymentAccount,
   //   updateTenantLoading
 }: IAddOrUpdateFlightModal) => {
-  const Toast = useToast();
+  // const Toast = useToast();
 
   const addTenantsFormik = useFormik<IFormData>({
     validationSchema: AddOrUpdateFlightsModalValidationSchema,
@@ -32,19 +32,20 @@ const AddOrUpdateFlightModal = ({
       files: [{ name: '', file: null }]
     },
     onSubmit: async (values) => {
-      const variables = {
-        code: values?.code,
-        capacity: values?.capacity,
-        departureDate: values?.departureDate,
-        files: values?.files
-      };
+      console.log(values);
+      // const variables = {
+      //   code: values?.code,
+      //   capacity: values?.capacity,
+      //   departureDate: values?.departureDate,
+      //   files: values?.files
+      // };
       //   setSelectedPropertyName(selectedProperty?.name);
 
       //   handleSuccessAction?.({ ...variables });
     }
   });
 
-  const resetFormField = (argName: string, value: any) => {
+  const resetFormField = (argName: string, value: string) => {
     if (value) addTenantsFormik.setFieldValue(argName, value);
   };
 
@@ -66,7 +67,7 @@ const AddOrUpdateFlightModal = ({
       onClose={onCloseAddOrUpdateFlightsModal}
       className={AddOrUpdateFlightModalStyles.AddOrUpdateFlightsModal}
       contentClassName={AddOrUpdateFlightModalStyles.AddOrUpdateFlightsModal__content}
-      isShowBottomLogo={false}>
+      isShowBottomLogo={true}>
       <h4 className={AddOrUpdateFlightModalStyles.AddOrUpdateFlightsModal__title}>
         {createOrUpdateFlightApiData?.isEditTenantDetails ? 'Flight Details' : 'Flight Information'}
       </h4>
@@ -100,26 +101,22 @@ const AddOrUpdateFlightModal = ({
             error={addTenantsFormik.submitCount > 0 && addTenantsFormik.errors.capacity}
           />
         </div>
-        {/* <div className={AddOrUpdateFlightModalStyles.AddOrUpdateFlightsModal__input}>
+        <div className={AddOrUpdateFlightModalStyles.AddOrUpdateFlightsModal__input}>
           <DateInput
             label="Departure Date"
             name="departureDate"
             value={addTenantsFormik?.values?.departureDate}
             placeholder="Departure Date"
-            onChange={(value: any) => {
+            onChange={(value: Date | null) => {
               addTenantsFormik.setFieldValue('departureDate', moment(value)?.format('YYYY-MM-DD'));
             }}
             error={addTenantsFormik.submitCount > 0 && addTenantsFormik.errors.departureDate}
           />
-        </div> */}
+        </div>
 
         <div className={AddOrUpdateFlightModalStyles.AddOrUpdateFlightsModal__buttons}>
           <StyledButton
-            title={
-              createOrUpdateFlightApiData?.isEditTenantDetails
-                ? 'Save Changes'
-                : 'Review Your Schedule'
-            }
+            title={createOrUpdateFlightApiData?.isEditTenantDetails ? 'Save Changes' : 'Submit'}
             color="primary"
             borderRadius="8px"
             padding="12px 24px"
@@ -129,11 +126,10 @@ const AddOrUpdateFlightModal = ({
           />
           <StyledButton
             title="Cancel"
-            // color="secondary"
             type="button"
             borderRadius="8px"
             padding="12px 24px"
-            // backgroundColor="#eff0f1"
+            className={AddOrUpdateFlightModalStyles.AddOrUpdateFlightsModal__cancelBtn}
             onClick={onCloseAddOrUpdateFlightsModal}
           />
         </div>

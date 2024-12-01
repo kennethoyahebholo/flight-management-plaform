@@ -5,3 +5,4 @@ export { default as StyledButton } from './StyledButton';
 export { default as PasswordStrengthMeter } from './PasswordStrengthMeter';
 export { default as Modal } from './Modal';
 export { default as AppTable } from './AppTable';
+export { default as DateInput } from './DateInput';
