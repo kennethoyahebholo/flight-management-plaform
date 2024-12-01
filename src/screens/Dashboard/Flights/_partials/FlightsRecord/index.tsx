@@ -3,12 +3,15 @@ import React, { useState } from 'react';
 import styles from './FlightsRecord.module.scss';
 import { useLocation, useNavigate } from 'react-router-dom';
 
-import { allColumn, tableTitles } from './FlightsRecord.data';
+import { allColumn, flightData, tableTitles } from './FlightsRecord.data';
 import { AppTable, StyledButton } from '../../../../../components';
 import PlusIcon from '../../../../../assets/svg_component/PlusIcon';
+import { setActiveFlightsModal, setIsShowFlightsModal } from '../../../../../redux/slices/flights';
+import { useAppDispatch } from '../../../../../redux/hooks';
 
 const FlightsRecord = () => {
   const limit = 10;
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const { pathname } = useLocation();
   const { search } = useLocation();
@@ -35,12 +38,8 @@ const FlightsRecord = () => {
             title="Add Flights"
             className={styles.flightsRecordWrapper__leftButton}
             onClick={() => {
-              //   dispatch(setIsShowTenantsModal(true));
-              //   if (propertyLists?.length >= 1) {
-              //     dispatch(setActiveTenantsModal('addTenantsModal'));
-              //     return;
-              //   }
-              //   dispatch(setActiveTenantsModal('addPropertyRedirectModal'));
+              dispatch(setIsShowFlightsModal(true));
+              dispatch(setActiveFlightsModal('addOrUpdateFlightsModal'));
             }}
             icon={<PlusIcon stroke="white" />}
             rightIconBtnClassName={styles.flightsRecordWrapper__leftButtonIcon}
@@ -50,16 +49,15 @@ const FlightsRecord = () => {
 
       <div className={styles.flightsRecordWrapper__table}>
         <AppTable
-          content={[]}
+          content={flightData?.resources}
           allColumn={allColumn}
           tableTitles={tableTitles}
           page={pageNumber}
           pageSize={limit}
-          count={0}
+          count={flightData?.count}
           setPage={setPage}
           loader={false}
           hasOnclick={handleRowClick}
-          hasActionIcon
         />
       </div>
     </div>

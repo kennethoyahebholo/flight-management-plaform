@@ -22,7 +22,6 @@ const AppTable = ({
   count,
   setPage,
   loader,
-  hasActionIcon,
   hasOnclick,
   actionIcon,
   emptyTableIcon,
@@ -50,18 +49,13 @@ const AppTable = ({
         <div>
           <div className={Styles.wrapper__tableRootCotainer}>
             <table>
-              <TableHeader
-                allowKeyArr={allColumn}
-                formatLabels={tableTitles}
-                hasActionIcon={hasActionIcon}
-              />
+              <TableHeader allowKeyArr={allColumn} formatLabels={tableTitles} />
               {content?.map((list: any, index: any) => (
                 <TableBody
                   tableIndex={index}
                   content={list}
                   key={index}
                   allowKeyArr={allColumn}
-                  hasActionIcon={hasActionIcon}
                   hasOnclick={hasOnclick}
                   actionIcon={actionIcon}
                 />

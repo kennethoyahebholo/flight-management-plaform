@@ -1,0 +1,161 @@
+.AddOrUpdateFlightsModal {
+  &__content {
+    text-align: unset;
+  }
+
+  &__title {
+    color: #101828;
+    text-align: center;
+    font-size: 24px;
+    font-family: MailSansRomanSemiBold;
+    margin-bottom: 24px;
+  }
+
+  &__subtitle {
+    color: #475467;
+    text-align: center;
+    font-size: 16px;
+    line-height: 24px;
+    margin: 0 0 32px 0;
+  }
+
+  &__form {
+    width: 100%;
+  }
+
+  &__input {
+    margin: 0 0 24px 0;
+
+    &--custom {
+      margin-bottom: 5px !important;
+    }
+  }
+
+  &__label {
+    font-size: 14px;
+    color: #121212;
+    line-height: 20px;
+    letter-spacing: -2%;
+    margin-bottom: 2px;
+  }
+
+  &__inputCustom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px;
+    border: 0.5px solid #d7d7d7;
+    height: 53px;
+    border-radius: 8px;
+    width: 100%;
+    position: relative;
+    background-color: rgba(246, 246, 246, 1);
+    color: rgba(25, 25, 25, 1);
+  }
+
+  &__inputCustomValue {
+    font-size: 16px;
+  }
+
+  &__changeAccount {
+    color: #5941a9;
+    font-family: MailSansRomanMedium;
+    font-size: 12px;
+    line-height: 16px;
+    letter-spacing: -0.02em;
+    text-align: center;
+    background-color: #e3e6ed;
+    padding: 2px 8px;
+    border-radius: 16px;
+    cursor: pointer;
+  }
+
+  &__buttons {
+    margin-top: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  &__addMoreFilesButtonWrapper {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    margin-bottom: 32px;
+  }
+
+  &__addMoreFilesButton {
+    border: none;
+    outline: none;
+    background: transparent;
+    text-decoration: underline;
+    color: #808080;
+    font-family: MailSansRomanMedium;
+    font-size: 15px;
+    line-height: 16px;
+    text-align: left;
+  }
+
+  &__guaranteeMessage {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  &__checkbox {
+    min-width: 20px;
+    max-width: 20px;
+    min-height: 20px;
+    max-height: 20px;
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+
+    &--checked {
+      border: 1px solid #5941a9;
+      background: #5941a91a;
+    }
+
+    &--notChecked {
+      border: 1px solid #808080;
+      background: inherit;
+    }
+  }
+
+  &__guaranteeMessageText {
+    font-family: MailSansRomanRegular;
+    font-size: 14px;
+    line-height: 24px;
+    letter-spacing: -0.02em;
+    text-align: left;
+    color: #5d5d5d;
+
+    &--span {
+      color: #5941a9 !important;
+      font-family: MailSansRomanMedium !important;
+      cursor: pointer;
+    }
+  }
+
+  @media only screen and (min-width: 768px) {
+    &__title {
+      font-size: 48px;
+      line-height: 60px;
+    }
+
+    &__subtitle {
+      font-size: 20px;
+      line-height: 30px;
+      margin: 0 0 48px 0;
+    }
+
+    &__content {
+      min-width: 752px;
+      max-width: 752px;
+      border-radius: 0px;
+      padding: 48px 32px;
+    }
+  }
+}

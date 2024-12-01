@@ -7,7 +7,6 @@ export interface IAppTableComp {
   count?: any;
   setPage?: any;
   loader?: boolean;
-  hasActionIcon?: boolean;
   hasOnclick?: any;
   actionIcon?: any;
   emptyTableIcon?: any;
