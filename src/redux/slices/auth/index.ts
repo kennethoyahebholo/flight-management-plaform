@@ -1,44 +1,25 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { getAllUsers, getUserDetails, login, register, updateUserRole } from './features';
+import { createSlice } from '@reduxjs/toolkit';
+import { getUserDetails, login, refreshToken, register } from './features';
 import { User } from './interface';
 import { removeUserTokenCookie } from '../../../utils/helpers/auth/cookieUtility';
 
 //define the interface for all the states that authslice is going to be using
 export interface AuthSliceState {
   isAuthenticated: boolean;
-  users: User[];
   user: User;
   isLoading: boolean;
-  isGettingTokenFromGoogleCallback: boolean;
   isLoadingUser?: boolean;
-  profile: User;
-  isVerifyingUserData: boolean;
-  userVerifiedData: any;
-  isUpdatingUserRole: boolean;
-
-  isRegisteringUser: boolean;
-  isVerifyingOtp: boolean;
-  isResendingOtp: boolean;
-  isSendingBehavioralNudge: boolean;
-  isGettingAllUsers: boolean;
+  isRegisteringUser?: boolean;
+  isRefreshingToken?: boolean;
 }
 
 const initialState: AuthSliceState = {
   isAuthenticated: false,
-  users: [],
   user: {},
   isLoading: false,
-  isGettingTokenFromGoogleCallback: false,
   isLoadingUser: true,
-  profile: {},
-  isVerifyingUserData: false,
-  userVerifiedData: {},
-  isUpdatingUserRole: false,
   isRegisteringUser: false,
-  isVerifyingOtp: false,
-  isResendingOtp: false,
-  isSendingBehavioralNudge: false,
-  isGettingAllUsers: false
+  isRefreshingToken: false
 };
 
 //create the slice
@@ -49,7 +30,6 @@ export const AuthSlice = createSlice({
     signOut: (state: AuthSliceState) => {
       removeUserTokenCookie();
       state.isAuthenticated = false;
-      state.profile = {};
       state.user = {};
     },
     setUser: (state: AuthSliceState, action) => {
@@ -87,40 +67,33 @@ export const AuthSlice = createSlice({
         state.isAuthenticated = false;
         state.isLoading = false;
       })
-      // users
-      .addCase(getAllUsers.pending, (state: AuthSliceState) => {
-        state.isGettingAllUsers = true;
-      })
-      .addCase(getAllUsers.rejected, (state: AuthSliceState) => {
-        state.isGettingAllUsers = false;
-      })
-      .addCase(getAllUsers.fulfilled, (state: AuthSliceState, action: PayloadAction<any>) => {
-        state.isGettingAllUsers = false;
-        state.users = action.payload.data;
-      })
+
       // user data
       .addCase(getUserDetails.pending, (state: AuthSliceState) => {
-        console.log('loading...');
+        state.isLoadingUser = true;
       })
       .addCase(getUserDetails.rejected, (state: AuthSliceState) => {
         removeUserTokenCookie();
         state.isLoadingUser = false;
         state.isAuthenticated = false;
       })
-      .addCase(getUserDetails.fulfilled, (state: AuthSliceState, action: PayloadAction<any>) => {
+      .addCase(getUserDetails.fulfilled, (state: AuthSliceState) => {
         state.isLoadingUser = false;
         state.isAuthenticated = true;
-        state.user = action.payload.data;
       })
-      // update user role
-      .addCase(updateUserRole.pending, (state: AuthSliceState) => {
-        state.isUpdatingUserRole = true;
+
+      // refresh token
+      .addCase(refreshToken.pending, (state: AuthSliceState) => {
+        state.isRefreshingToken = true;
       })
-      .addCase(updateUserRole.fulfilled, (state: AuthSliceState) => {
-        state.isUpdatingUserRole = false;
+      .addCase(refreshToken.rejected, (state: AuthSliceState) => {
+        state.isRefreshingToken = false;
+        removeUserTokenCookie();
+        state.isAuthenticated = false;
       })
-      .addCase(updateUserRole.rejected, (state: AuthSliceState) => {
-        state.isUpdatingUserRole = false;
+      .addCase(refreshToken.fulfilled, (state: AuthSliceState) => {
+        state.isRefreshingToken = true;
+        state.isAuthenticated = true;
       });
   }
 });

@@ -1,10 +1,30 @@
 import axios from 'axios';
-// import { API_BASE_URL } from './config';
 import { getUserTokenCookie, removeUserTokenCookie } from '../helpers/auth/cookieUtility';
+import { refreshToken } from '../../redux/slices/auth/features';
+import { store } from '../../redux/store';
 
 const api = axios.create({
   baseURL: 'http://localhost:3000'
 });
+
+let isRefreshing = false;
+
+let refreshSubscribers: Array<(token: string) => void> = [];
+
+/**
+ * Notify all subscribers of the new token.
+ */
+const onRefreshed = (token: string) => {
+  refreshSubscribers.forEach((callback) => callback(token));
+  refreshSubscribers = [];
+};
+
+/**
+ * Subscribe to token refresh events.
+ */
+const addRefreshSubscriber = (callback: (token: string) => void) => {
+  refreshSubscribers.push(callback);
+};
 
 // Request Interceptor
 api.interceptors.request.use(
@@ -20,17 +40,39 @@ api.interceptors.request.use(
   }
 );
 
-// Response Interceptor
+// Response interceptor to handle token refresh
 api.interceptors.response.use(
-  (response) => {
-    // If the response is good, just return it
-    return response;
-  },
-  (error) => {
-    // If you receive a 401 error, remove the token
-    if (error.response && error.response.status === 401) {
-      removeUserTokenCookie();
+  (response) => response,
+  async (error) => {
+    const originalRequest = error.config;
+
+    if (error.response?.status === 401 && !originalRequest._retry) {
+      if (isRefreshing) {
+        return new Promise((resolve) => {
+          addRefreshSubscriber((token) => {
+            originalRequest.headers.Authorization = `Bearer ${token}`;
+            resolve(api(originalRequest));
+          });
+        });
+      }
+
+      originalRequest._retry = true;
+      isRefreshing = true;
+
+      try {
+        const { token } = await store.dispatch(refreshToken()).unwrap();
+
+        onRefreshed(token); // Notify subscribers
+        originalRequest.headers.Authorization = `Bearer ${token}`;
+        return api(originalRequest); // Retry the original request
+      } catch (refreshError) {
+        removeUserTokenCookie(); // Remove tokens on failure
+        return Promise.reject(refreshError);
+      } finally {
+        isRefreshing = false;
+      }
     }
+
     return Promise.reject(error);
   }
 );

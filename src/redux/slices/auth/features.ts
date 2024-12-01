@@ -1,5 +1,9 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { setUserTokenCookie } from '../../../utils/helpers/auth/cookieUtility';
+import {
+  getRefreshTokenCookie,
+  setRefreshTokenCookie,
+  setUserTokenCookie
+} from '../../../utils/helpers/auth/cookieUtility';
 import api from '../../../utils/axios/api';
 import { handleAxiosError } from '../../../utils/helpers/general/errorHandler';
 
@@ -9,7 +13,10 @@ export const login = createAsyncThunk(
   async ({ email, password }: { email: string; password: string }) => {
     try {
       const response = await api.post('auth/login', { email, password });
-      setUserTokenCookie(response.data.token);
+
+      const { token, refreshToken } = response.data;
+      setUserTokenCookie(token);
+      setRefreshTokenCookie(refreshToken);
       return response.data;
     } catch (error) {
       handleAxiosError(error);
@@ -40,35 +47,24 @@ export const getUserDetails = createAsyncThunk('auth/me', async () => {
   }
 });
 
-// Get users
-export const getAllUsers = createAsyncThunk('users', async () => {
-  try {
-    const response = await api.get('users');
-    return response.data;
-  } catch (error) {
-    handleAxiosError(error);
+// refresh token
+export const refreshToken = createAsyncThunk('auth/refresh', async (_, { rejectWithValue }) => {
+  const refreshToken = getRefreshTokenCookie();
+  if (!refreshToken) {
+    return rejectWithValue('No refresh token available');
   }
-});
 
-// Get user profile
-export const getUserProfile = createAsyncThunk('users/me/profile', async () => {
   try {
-    const response = await api.get('users/me/profile');
-    return response.data;
-  } catch (error) {
-    handleAxiosError(error);
-  }
-});
+    const response = await api.post('/auth/refresh', { refreshToken });
+    const { token, refreshToken: newRefreshToken } = response.data;
 
-// Update user role
-export const updateUserRole = createAsyncThunk(
-  'user/role',
-  async (payload: { newRole: string }) => {
-    try {
-      const response = await api.put(`user/role`, payload);
-      return response.data;
-    } catch (error) {
-      handleAxiosError(error);
+    if (token && newRefreshToken) {
+      setUserTokenCookie(token);
+      setRefreshTokenCookie(newRefreshToken); // Update refresh token
     }
+
+    return response.data;
+  } catch (error) {
+    handleAxiosError(error);
   }
-);
+});

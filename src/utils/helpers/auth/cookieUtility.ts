@@ -1,6 +1,7 @@
 import Cookies from 'js-cookie';
 
 export const USER_TOKEN_KEY = process.env.REACT_APP_USER_TOKEN_KEY || 'defaultToken';
+export const REFRESH_TOKEN_KEY = 'refreshToken';
 
 /**
  * Set the userToken cookie.
@@ -22,6 +23,7 @@ export const setUserTokenCookie = (value: any, options?: Cookies.CookieAttribute
  */
 export const removeUserTokenCookie = (options?: Cookies.CookieAttributes): void => {
   Cookies.remove(USER_TOKEN_KEY, options);
+  Cookies.remove(REFRESH_TOKEN_KEY);
 };
 
 /**
@@ -31,4 +33,21 @@ export const removeUserTokenCookie = (options?: Cookies.CookieAttributes): void 
  */
 export const getUserTokenCookie = (): string | undefined => {
   return Cookies.get(USER_TOKEN_KEY);
+};
+
+/**
+ * Set the refresh token cookie.
+ */
+export const setRefreshTokenCookie = (refreshToken: string): void => {
+  Cookies.set(REFRESH_TOKEN_KEY, refreshToken, {
+    secure: process.env.REACT_APP_ENV === 'production',
+    sameSite: 'strict'
+  });
+};
+
+/**
+ * Get the refresh token from cookies.
+ */
+export const getRefreshTokenCookie = (): string | undefined => {
+  return Cookies.get(REFRESH_TOKEN_KEY);
 };
