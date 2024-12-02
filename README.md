@@ -130,3 +130,6 @@ The following technologies were used to build and maintain this project:
 - **Yup**: A JavaScript schema validation library used for form validation and ensuring data integrity.
 - **Formik**: A library for building forms in React with minimal effort, including validation and state management.
 - **Moment**: A library for parsing, validating, manipulating, and formatting dates in JavaScript.
+- **React-Toastify**: A library for displaying notifications (toast messages) in a React app with customizable features.
+- **React-Click-Away-Listener**: A React component that allows detecting clicks outside a specific element, often used for closing dropdowns or modals.
+- **JWT-Decode**: A library for decoding JSON Web Tokens (JWT), used for extracting data like user authentication information from the token.
