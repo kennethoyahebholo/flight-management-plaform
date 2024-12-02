@@ -1,6 +1,6 @@
 import { useAppDispatch } from '../../../redux/hooks';
 import { getUserDetails } from '../../../redux/slices/auth/features';
-import { ERROR_OCCURED_MESSAGE } from '../../constant';
+import { ERROR_OCCURRED_MESSAGE } from '../../constant';
 import useToast from '../../helpers/general/useToast';
 
 export const fetchUserDataUtility = async (dispatch: ReturnType<typeof useAppDispatch>) => {
@@ -13,12 +13,12 @@ export const fetchUserDataUtility = async (dispatch: ReturnType<typeof useAppDis
   try {
     const actionResult = await dispatch(getUserDetails());
     if (getUserDetails.rejected.match(actionResult)) {
-      const errorMessage = actionResult.error?.message || ERROR_OCCURED_MESSAGE;
+      const errorMessage = actionResult.error?.message || ERROR_OCCURRED_MESSAGE;
 
       dispatchAlert(errorMessage);
     }
   } catch (err) {
-    dispatchAlert(ERROR_OCCURED_MESSAGE);
+    dispatchAlert(ERROR_OCCURRED_MESSAGE);
     console.log(err);
   }
 };

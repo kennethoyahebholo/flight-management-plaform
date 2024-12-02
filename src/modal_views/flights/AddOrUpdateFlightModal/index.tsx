@@ -14,7 +14,7 @@ import {
   createFlightWithPhoto,
   updateFlightDetails
 } from '../../../redux/slices/flights/features';
-import { ERROR_OCCURED_MESSAGE } from '../../../utils/constant';
+import { ERROR_OCCURRED_MESSAGE } from '../../../utils/constant';
 import { setActiveFlightsModal } from '../../../redux/slices/flights';
 
 const AddOrUpdateFlightModal = ({
@@ -108,7 +108,7 @@ const AddOrUpdateFlightModal = ({
         dispatch(setActiveFlightsModal('addOrUpdateFlightsSuccessModal'));
       }
     } else if (updateFlightDetails.rejected.match(actionResult)) {
-      const errorMessage = actionResult.error?.message || ERROR_OCCURED_MESSAGE;
+      const errorMessage = actionResult.error?.message || ERROR_OCCURRED_MESSAGE;
       toast.error(errorMessage);
     }
   };
@@ -131,7 +131,7 @@ const AddOrUpdateFlightModal = ({
         dispatch(setActiveFlightsModal('addOrUpdateFlightsSuccessModal'));
       }
     } else if (createFlightWithPhoto.rejected.match(actionResult)) {
-      const errorMessage = actionResult.error?.message || ERROR_OCCURED_MESSAGE;
+      const errorMessage = actionResult.error?.message || ERROR_OCCURRED_MESSAGE;
       toast.error(errorMessage);
     }
   };
@@ -147,7 +147,7 @@ const AddOrUpdateFlightModal = ({
         dispatch(setActiveFlightsModal('addOrUpdateFlightsSuccessModal'));
       }
     } else if (createFlight.rejected.match(actionResult)) {
-      const errorMessage = actionResult.error?.message || ERROR_OCCURED_MESSAGE;
+      const errorMessage = actionResult.error?.message || ERROR_OCCURRED_MESSAGE;
       toast.error(errorMessage);
     }
   };

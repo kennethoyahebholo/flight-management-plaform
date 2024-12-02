@@ -4,7 +4,7 @@ import { Link, useParams } from 'react-router-dom';
 import { FlightsModalControl } from '../../../../modal_views/flights/_partials';
 import { getFlightDetails } from '../../../../redux/slices/flights/features';
 import { useAppDispatch } from '../../../../redux/hooks';
-import { ERROR_OCCURED_MESSAGE } from '../../../../utils/constant';
+import { ERROR_OCCURRED_MESSAGE } from '../../../../utils/constant';
 import useToast from '../../../../utils/helpers/general/useToast';
 import {
   setActiveFlightsModal,
@@ -35,7 +35,7 @@ const FlightDetails = () => {
     if (getFlightDetails.fulfilled.match(actionResult)) {
       setFlightData(actionResult.payload);
     } else if (getFlightDetails.rejected.match(actionResult)) {
-      const errorMessage = actionResult.error?.message || ERROR_OCCURED_MESSAGE;
+      const errorMessage = actionResult.error?.message || ERROR_OCCURRED_MESSAGE;
       toast.error(errorMessage);
     }
   };

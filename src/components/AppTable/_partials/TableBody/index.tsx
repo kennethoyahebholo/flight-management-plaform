@@ -29,7 +29,7 @@ const TableBody = ({
                 <p>{truncateData(content?.[ele], 22)}</p>
               ) : (
                 <p className={`${content?.[ele as keyof ContentType]}`}>
-                  {truncateData(content?.[ele as keyof ContentType], 22)}
+                  {truncateData(content?.[ele as keyof ContentType] as string, 22)}
                 </p>
               )}
             </td>

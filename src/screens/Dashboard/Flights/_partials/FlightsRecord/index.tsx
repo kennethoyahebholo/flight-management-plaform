@@ -12,7 +12,7 @@ import {
 } from '../../../../../redux/slices/flights';
 import { useAppDispatch, useAppSelector } from '../../../../../redux/hooks';
 import { getFlights } from '../../../../../redux/slices/flights/features';
-import { ERROR_OCCURED_MESSAGE } from '../../../../../utils/constant';
+import { ERROR_OCCURRED_MESSAGE } from '../../../../../utils/constant';
 import { ContentType } from '../../../../../components/AppTable/AppTable.types';
 import useToast from '../../../../../utils/helpers/general/useToast';
 
@@ -56,7 +56,7 @@ const FlightsRecord = () => {
     if (getFlights.fulfilled.match(actionResult)) {
       setFlightData(actionResult.payload);
     } else if (getFlights.rejected.match(actionResult)) {
-      const errorMessage = actionResult.error?.message || ERROR_OCCURED_MESSAGE;
+      const errorMessage = actionResult.error?.message || ERROR_OCCURRED_MESSAGE;
       toast.error(errorMessage);
     }
   };

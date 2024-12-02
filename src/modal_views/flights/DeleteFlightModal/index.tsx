@@ -7,7 +7,7 @@ import { IDeleteFlightModal } from './DeleteFlightModal.types';
 import { useAppDispatch, useAppSelector } from '../../../redux/hooks';
 import { StyledButton } from '../../../components';
 import { deleteFlightDetails } from '../../../redux/slices/flights/features';
-import { ERROR_OCCURED_MESSAGE } from '../../../utils/constant';
+import { ERROR_OCCURRED_MESSAGE } from '../../../utils/constant';
 import useToast from '../../../utils/helpers/general/useToast';
 import { setRefetchGetFlightsData } from '../../../redux/slices/flights';
 import CautionIcon from '../../../assets/svg_component/CautionIcon';
@@ -34,7 +34,7 @@ const DeleteFlightModal = ({
       dispatch(setRefetchGetFlightsData(true));
       onCloseDeleteFlightModal();
     } else if (deleteFlightDetails.rejected.match(actionResult)) {
-      const errorMessage = actionResult.error?.message || ERROR_OCCURED_MESSAGE;
+      const errorMessage = actionResult.error?.message || ERROR_OCCURRED_MESSAGE;
       toast.error(errorMessage);
     }
   };

@@ -6,7 +6,7 @@ import { AuthBackground, InputField, StyledButton } from '../../components';
 import { loginValidationSchema } from './loginValidationSchema.validation';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import { login } from '../../redux/slices/auth/features';
-import { ERROR_OCCURED_MESSAGE } from '../../utils/constant';
+import { ERROR_OCCURRED_MESSAGE } from '../../utils/constant';
 import useToast from '../../utils/helpers/general/useToast';
 
 import CheckIcon from '../../assets/svg_component/CheckIcon';
@@ -43,7 +43,7 @@ const Login = () => {
         navigate('/dashboard');
       }
     } else if (login.rejected.match(actionResult)) {
-      const errorMessage = actionResult.error?.message || ERROR_OCCURED_MESSAGE;
+      const errorMessage = actionResult.error?.message || ERROR_OCCURRED_MESSAGE;
       toast.error(errorMessage);
     }
   };

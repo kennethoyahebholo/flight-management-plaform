@@ -1,1 +1,1 @@
-export const ERROR_OCCURED_MESSAGE = 'An unknown error occurred';
+export const ERROR_OCCURRED_MESSAGE = 'An unknown error occurred';

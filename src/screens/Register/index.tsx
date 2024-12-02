@@ -5,7 +5,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useAppDispatch } from '../../redux/hooks';
 import useToast from '../../utils/helpers/general/useToast';
 import { register } from '../../redux/slices/auth/features';
-import { ERROR_OCCURED_MESSAGE } from '../../utils/constant';
+import { ERROR_OCCURRED_MESSAGE } from '../../utils/constant';
 import { InputField, PasswordStrengthMeter, StyledButton } from '../../components';
 import AuthBackground from '../../components/AuthBackground';
 import { passwordValidation } from './Register.validation';
@@ -57,7 +57,7 @@ const Register = () => {
         setIsLoading(false);
       }
     } else if (register.rejected.match(actionResult)) {
-      const errorMessage = actionResult.error?.message || ERROR_OCCURED_MESSAGE;
+      const errorMessage = actionResult.error?.message || ERROR_OCCURRED_MESSAGE;
       toast.error(errorMessage);
       setIsLoading(false);
     }
