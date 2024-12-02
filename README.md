@@ -43,7 +43,7 @@ Before running the application, please ensure the following:
 
 - The application is designed to run in a local development environment using **Node.js** and **React**.
 - The frontend is built with **TypeScript** and the testing is done using **Playwright** (for integration tests) and **Jest** (for unit tests).
-- **Node.js** version 16 or later is installed on your machine.
+- **Node.js** version 16.17.1 or later is installed on your machine.
 - The tests are categorized as follows:
   - **Unit Tests**: Written using **Jest** and located in various screens directory `/src/screens/Login/__tests__/`, `/src/screens/Register/__tests__/`, `/src/modal_views/flights/AddOrUpdateFlightModal/__tests__/` .
   - **Integration Tests**: Written using **Playwright** and stored in the `/src/tests/e2e/` directory.
