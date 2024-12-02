@@ -19,10 +19,17 @@ A frontend application designed to manage flight information, allowing users to 
 
    ```bash
    git clone https://github.com/kennethoyahebholo/flight-management-platform.git
+   ```
+
+2. **Change Directory**
+
+   Navigate to the project directory using the following command:
+
+   ```bash
    cd flight-management-platform
    ```
 
-2. **Install Dependencies**
+3. **Install Dependencies**
 
    The project uses npm to manage dependencies. Run one of the following commands to install the necessary dependencies:
 
@@ -30,7 +37,7 @@ A frontend application designed to manage flight information, allowing users to 
    npm install
    ```
 
-3. **Environment Variables**
+4. **Environment Variables**
 
    create a .env file in the root of the project and add the necessary keys. Here’s an example .env file format:
 
@@ -41,9 +48,9 @@ A frontend application designed to manage flight information, allowing users to 
 
 Before running the application, please ensure the following:
 
+- **Node.js** version 16.17.1 or later is installed on your machine.
 - The application is designed to run in a local development environment using **Node.js** and **React**.
 - The frontend is built with **TypeScript** and the testing is done using **Playwright** (for integration tests) and **Jest** (for unit tests).
-- **Node.js** version 16.17.1 or later is installed on your machine.
 - The tests are categorized as follows:
   - **Unit Tests**: Written using **Jest** and located in various screens directory `/src/screens/Login/__tests__/`, `/src/screens/Register/__tests__/`, `/src/modal_views/flights/AddOrUpdateFlightModal/__tests__/` .
   - **Integration Tests**: Written using **Playwright** and stored in the `/src/tests/e2e/` directory.
