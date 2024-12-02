@@ -41,15 +41,15 @@ A frontend application designed to manage flight information, allowing users to 
 
    create a .env file in the root of the project and add the necessary keys. Here’s an example .env file format:
 
-   # The key used for storing the user token
+   - The key used for storing the user token
 
    REACT_APP_USER_TOKEN_KEY=userToken
 
-   # Environment the application is running in
+   - Environment the application is running in
 
    REACT_APP_ENV=dev
 
-   # Ensures the app always runs on port 3000
+   - Ensures the app always runs on port 3000
 
    PORT=3000
 
