@@ -18,6 +18,12 @@ const config: Config = {
     'index.tsx',
     '/src/tests/e2e/'
   ],
+  testPathIgnorePatterns: [
+    '/node_modules/',
+    '/coverage/',
+    '/src/tests/e2e/', // Ignore the Playwright E2E test folder
+    '\\.spec\\.ts$' // Ignore all files ending with `.spec.ts`
+  ],
   moduleNameMapper: {
     '\\.module\\.(css|scss)$': 'identity-obj-proxy', // Use identity-obj-proxy for CSS modules
     '\\.(css|scss)$': 'identity-obj-proxy', // Use identity-obj-proxy for regular CSS
