@@ -45,7 +45,7 @@ Before running the application, please ensure the following:
 - The frontend is built with **TypeScript** and the testing is done using **Playwright** (for integration tests) and **Jest** (for unit tests).
 - **Node.js** version 16 or later is installed on your machine.
 - The tests are categorized as follows:
-  - **Unit Tests**: Written using **Jest** and located in the `/src/tests/unit/` directory.
+  - **Unit Tests**: Written using **Jest** and located in various screens directory `/src/screens/Login/__tests__/`, `/src/screens/Register/__tests__/`, `/src/modal_views/flights/AddOrUpdateFlightModal/__tests__/` .
   - **Integration Tests**: Written using **Playwright** and stored in the `/src/tests/e2e/` directory.
 - **Playwright** tests are compatible with modern browsers such as **Chrome**, **Firefox**, and **Safari**.
 
@@ -79,10 +79,8 @@ Running Playwright Integration Tests
 
 To run Playwright tests (integration tests), execute the following command:
 
-    ```bash
-
+```bash
 npx playwright test
-
 ```
 
 This will run all the Playwright tests defined in /src/tests/e2e/.
@@ -117,4 +115,7 @@ The following technologies were used to build and maintain this project:
 - **CSS Modules**: A modular CSS solution for scoped and reusable styles within React components.
 - **Prettier**: An opinionated code formatter to ensure consistent code style across the project.
 - **ESLint**: A static analysis tool to identify and fix problematic patterns in JavaScript/TypeScript code.
+
+```
+
 ```
