@@ -40,11 +40,19 @@ api.interceptors.request.use(
   }
 );
 
+// Add a list of endpoints that should not trigger a refresh token
+const noRefreshEndpoints = ['auth/login', 'auth/register'];
+
 // Response interceptor to handle token refresh
 api.interceptors.response.use(
   (response) => response,
   async (error) => {
     const originalRequest = error.config;
+
+    // Check if the endpoint is in the noRefreshEndpoints list
+    if (noRefreshEndpoints.some((endpoint) => originalRequest.url?.includes(endpoint))) {
+      return Promise.reject(error); // Skip refresh token logic
+    }
 
     if (error.response?.status === 401 && !originalRequest._retry) {
       if (isRefreshing) {

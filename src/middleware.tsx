@@ -1,8 +1,8 @@
 import React, { ReactNode, useEffect } from 'react';
 import { jwtDecode } from 'jwt-decode';
+import { useNavigate } from 'react-router-dom';
 
 import { useAppDispatch, useAppSelector } from './redux/hooks';
-import { useNavigate } from 'react-router-dom';
 import { SuspenseLoader } from './components';
 import { getUserTokenCookie } from './utils/helpers/auth/cookieUtility';
 import { setUser } from './redux/slices/auth';

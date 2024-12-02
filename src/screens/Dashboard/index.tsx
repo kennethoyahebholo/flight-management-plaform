@@ -1,6 +1,6 @@
 import React from 'react';
-
 import { useLocation } from 'react-router-dom';
+
 import Middleware from '../../middleware';
 import { useAppDispatch } from '../../redux/hooks';
 import useFetchDataUtility from '../../utils/helpers/auth/userDetails';

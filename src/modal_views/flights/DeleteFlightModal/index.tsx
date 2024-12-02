@@ -9,10 +9,10 @@ import { StyledButton } from '../../../components';
 import { deleteFlightDetails } from '../../../redux/slices/flights/features';
 import { ERROR_OCCURED_MESSAGE } from '../../../utils/constant';
 import useToast from '../../../utils/helpers/general/useToast';
-
-import DeleteFlightModalStyles from './DeleteFlightModal.module.scss';
 import { setRefetchGetFlightsData } from '../../../redux/slices/flights';
 import CautionIcon from '../../../assets/svg_component/CautionIcon';
+
+import DeleteFlightModalStyles from './DeleteFlightModal.module.scss';
 
 const DeleteFlightModal = ({
   showDeleteFlightModal,
@@ -42,12 +42,9 @@ const DeleteFlightModal = ({
   return (
     <Modal
       isShow={showDeleteFlightModal}
-      isShowBackButton={false}
-      onBack={onClickAwayDeleteFlightModal}
       onClickAway={onClickAwayDeleteFlightModal}
       onClose={onCloseDeleteFlightModal}
       isShowCloseIcon={false}
-      isShowBackToLogin={false}
       className={DeleteFlightModalStyles.DeleteFlightModal}
       isShowBottomLogo={false}>
       <div className={DeleteFlightModalStyles.DeleteFlightModal__content}>

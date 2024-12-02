@@ -1,6 +1,6 @@
 import React from 'react';
+
 import CircularLoadingSpinner from '../CircularLoadingSpinner';
-// import Loader from './index';
 
 const SuspenseLoader = () => {
   return (

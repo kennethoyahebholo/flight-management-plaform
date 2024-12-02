@@ -1,4 +1,5 @@
 import React from 'react';
+
 import NotFoundStyles from './NotFound.module.scss';
 
 const NotFound = () => {

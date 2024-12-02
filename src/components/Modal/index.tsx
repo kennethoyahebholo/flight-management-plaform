@@ -1,10 +1,10 @@
 import React from 'react';
 import ClickAwayListener from 'react-click-away-listener';
+
 import { IModal } from './Modal.types';
-// import { ReactComponent as ModalCloseIcon } from '../../assets/images/circled-close-icon.svg';
-// import { ReactComponent as ModalBackIcon } from '../../assets/images/circled-arrow-icon.svg';
-// import SuspenseLoader from '../Loader/SuspenseLoader';
 import SuspenseLoader from '../SuspenseLoader';
+
+import { ReactComponent as ModalCloseIcon } from '../../assets/images/circled-close-icon.svg';
 import PrimaryLogo from '../../assets/images/primaryLogo.png';
 
 import ModalStyles from './Modal.module.scss';
@@ -13,13 +13,12 @@ const Modal = ({
   children,
   isShow,
   onClickAway,
+  onClose,
   className,
   childrenClassName,
   contentClassName,
   isTopIcon,
   topIcon,
-  isShowBackToLogin,
-  isShowBackButton,
   isShowCloseIcon = true,
   closeClassName,
   isShowBottomLogo,
@@ -37,18 +36,12 @@ const Modal = ({
         <ClickAwayListener onClickAway={() => onClickAway?.()}>
           <div className={`${ModalStyles.modal__content}  ${contentClassName}`}>
             <div className={ModalStyles.modal__header}>
-              {isShowBackButton && (
-                <div className={ModalStyles.modal__back}>
-                  {/* <ModalBackIcon className={ModalStyles.modal__backIcon} onClick={() => onBack()} /> */}
-                </div>
-              )}
-
               {isShowCloseIcon && (
                 <div className={`${ModalStyles.modal__close} ${closeClassName}`}>
-                  {/* <ModalCloseIcon
+                  <ModalCloseIcon
                     className={ModalStyles.modal__closeIcon}
-                    onClick={() => onClose()}
-                  /> */}
+                    onClick={() => onClose?.()}
+                  />
                 </div>
               )}
             </div>
@@ -57,14 +50,6 @@ const Modal = ({
               {isTopIcon && <div className={ModalStyles.modal__topIcon}>{topIcon}</div>}
 
               {children}
-
-              {isShowBackToLogin && (
-                <p
-                  // onClick={onLoginClick}
-                  className={ModalStyles.modal__loginText}>
-                  Back to Login
-                </p>
-              )}
 
               {isShowBottomLogo && (
                 <div className={ModalStyles.modal__bottomLogo}>

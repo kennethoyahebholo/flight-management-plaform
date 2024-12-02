@@ -1,7 +1,17 @@
 .homeWrapper {
   padding: 20px 18px;
 
-  @media only screen and (min-width: 1200px) {
-    // padding: 67px 50px;
+  &__ctaWrap {
+    text-decoration: none;
+  }
+
+  &__cta {
+    padding: 0 !important;
+    display: flex;
+    flex-direction: row-reverse;
+    border-radius: 8px !important;
+    padding: 10px 16px !important;
+    gap: 8px;
+    width: fit-content;
   }
 }

@@ -43,18 +43,10 @@
     width: 100%;
     position: relative;
   }
-  &__back {
-    position: absolute;
-    left: 0;
-    cursor: pointer;
-  }
   &__close {
     position: absolute;
     right: 0;
     cursor: pointer;
-  }
-  &__topIcon {
-    display: none;
   }
   &__children {
     width: 100%;
@@ -64,12 +56,8 @@
     justify-content: center;
     align-items: center;
   }
-  &__loginText {
-    color: #5941a9;
-    font-weight: 600;
-    font-size: 12px;
-    margin: 16px 0 0 0;
-    cursor: pointer;
+  &__topIcon {
+    display: none;
   }
   &__bottomLogo {
     margin: 40px 0 0 0;
@@ -87,9 +75,6 @@
     }
     &__topIcon {
       display: block;
-    }
-    &__loginText {
-      font-size: 14px;
     }
   }
 }

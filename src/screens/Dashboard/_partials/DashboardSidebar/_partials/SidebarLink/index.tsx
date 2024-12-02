@@ -13,7 +13,6 @@ const SidebarLink = ({
   activeIcon,
   activeLink,
   linkTo,
-  handleShowLogOutModal,
   isCollapsed
 }: ISidebarLink) => {
   const dispatch = useAppDispatch();

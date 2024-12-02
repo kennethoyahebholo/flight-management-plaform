@@ -1,12 +1,10 @@
 import React from 'react';
 
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 
-import { useAppDispatch } from '../../../../redux/hooks';
 import SidebarLink from './_partials/SidebarLink';
 import { ISidebar } from './Sidebar.types';
 import { bottomSidebarLinks, topSidebarLinks } from './_partials/SidebarRoutes';
-import { signOut } from '../../../../redux/slices/auth';
 
 import PrimaryLogo from '../../../../assets/images/primaryLogo.png';
 import PrimaryLogoWithText from '../../../../assets/images/PrimaryLogoWithText.png';
@@ -14,14 +12,7 @@ import PrimaryLogoWithText from '../../../../assets/images/PrimaryLogoWithText.p
 import SidebarStyles from './Sidebar.module.scss';
 
 const DashboardSidebar = ({ onCloseSidebar, isCollapsed }: ISidebar) => {
-  const dispatch = useAppDispatch();
-  const navigate = useNavigate();
   const { pathname } = useLocation();
-
-  const showLogoutModal = () => {
-    dispatch(signOut());
-    navigate('/');
-  };
 
   return (
     <div className={SidebarStyles.sidebar}>
@@ -55,7 +46,6 @@ const DashboardSidebar = ({ onCloseSidebar, isCollapsed }: ISidebar) => {
                 activeIcon={list?.activeIcon}
                 onClick={onCloseSidebar}
                 activeLink={list?.activeLink}
-                handleShowLogOutModal={showLogoutModal}
                 isCollapsed={isCollapsed}
               />
               {list?.hasLinkSeparator && <div className={SidebarStyles.sidebar__linkSeparator} />}
@@ -74,7 +64,6 @@ const DashboardSidebar = ({ onCloseSidebar, isCollapsed }: ISidebar) => {
                 activeIcon={list?.activeIcon}
                 onClick={onCloseSidebar}
                 activeLink={list?.activeLink}
-                handleShowLogOutModal={showLogoutModal}
                 isCollapsed={isCollapsed}
               />
               {list?.hasLinkSeparator && <div className={SidebarStyles.sidebar__linkSeparator} />}

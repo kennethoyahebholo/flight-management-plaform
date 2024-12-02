@@ -9,7 +9,7 @@ export const REFRESH_TOKEN_KEY = 'refreshToken';
  * @param value - The cookie's value.
  * @param options - Optional settings for the cookie.
  */
-export const setUserTokenCookie = (value: any, options?: Cookies.CookieAttributes): void => {
+export const setUserTokenCookie = (value: string, options?: Cookies.CookieAttributes): void => {
   Cookies.set(USER_TOKEN_KEY, value, {
     ...options,
     secure: process.env.REACT_APP_ENV === 'production' // Ensure secure transmission in production

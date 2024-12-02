@@ -31,12 +31,9 @@ const LogoutModal = ({
   return (
     <Modal
       isShow={showLogoutModal}
-      isShowBackButton={false}
-      onBack={onClickAwayLogoutModal}
       onClickAway={onClickAwayLogoutModal}
       onClose={onCloseLogoutModal}
       isShowCloseIcon={false}
-      isShowBackToLogin={false}
       className={LogoutModalStyles.logoutModal}
       isShowBottomLogo={false}>
       <div className={LogoutModalStyles.logoutModal__content}>

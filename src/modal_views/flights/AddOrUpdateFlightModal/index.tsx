@@ -266,16 +266,12 @@ const AddOrUpdateFlightModal = ({
                   : 'Submit'
             }
             color="primary"
-            borderRadius="8px"
-            padding="12px 24px"
             type="submit"
             disabled={isLoading}
           />
           <StyledButton
             title="Cancel"
             type="button"
-            borderRadius="8px"
-            padding="12px 24px"
             className={AddOrUpdateFlightModalStyles.AddOrUpdateFlightsModal__cancelBtn}
             onClick={onCloseAddOrUpdateFlightsModal}
           />

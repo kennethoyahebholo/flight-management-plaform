@@ -2,13 +2,12 @@ import React from 'react';
 
 import { ContentType, IAppTableComp } from './AppTable.types';
 import Pagination from '../Pagination';
-
-import { TableBody, TableHeader } from './_partials';
+import { TableBody, TableHeader, EmptyTableRecord } from './_partials';
 import SuspenseLoader from '../SuspenseLoader';
-import EmptyTableRecord from './_partials/EmptyTableRecord';
+
+import EmptyStateIcon from '../../assets/svg_component/EmptyStateIcon';
 
 import Styles from './AppTable.module.scss';
-import EmptyStateIcon from '../../assets/svg_component/EmptyStateIcon';
 
 const AppTable = ({
   content,

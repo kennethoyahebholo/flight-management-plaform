@@ -1,18 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 
+import { IDashboardHeader } from './DashboardHeader.types';
+
 import ProfileAvatar from '../../../../assets/svg_component/ProfileAvatar';
 import NotificationIcon from '../../../../assets/svg_component/NotificationIcon';
 import HambugerIcon from '../../../../assets/svg_component/HambugerIcon';
 import ArrowHeadIcon from '../../../../assets/svg_component/ArrowHeadIcon';
 
 import DashboardHeaderStyle from './DashboardHeader.module.scss';
-
-interface IDashboardHeader {
-  handleToggleHamburger?: () => void;
-  isCollapsed?: boolean;
-  handleCollapse?: () => void;
-}
 
 const DashboardHeader = ({
   handleToggleHamburger,

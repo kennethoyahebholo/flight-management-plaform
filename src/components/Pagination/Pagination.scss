@@ -3,7 +3,9 @@
   box-shadow: 0px 12px 20px 3px rgba(223, 224, 235, 0.02);
   display: flex;
   align-items: center;
+  justify-content: space-between;
   padding: 16px;
+  width: 100% !important;
   @media (max-width: 500px) {
     padding: 16px;
   }
@@ -70,11 +72,11 @@
     }
     .active {
       border-radius: 4px;
-      color: #523b9f;
-      border: 1px solid rgba(89, 65, 169, 1);
+      color: #0d405d;
+      border: 1px solid #0d405d;
       a {
         font-family: 'ManropeSemiBold';
-        color: #523b9f;
+        color: #0d405d;
       }
     }
   }

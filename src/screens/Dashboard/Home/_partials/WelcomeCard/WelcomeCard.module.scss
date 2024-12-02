@@ -29,15 +29,6 @@
     max-width: 487px;
   }
 
-  &__right {
-    width: fit-content;
-    height: 100%;
-    position: absolute;
-    right: 0;
-    top: 0;
-    display: none;
-  }
-
   @media (min-width: 768px) {
     &__left {
       padding: 22px 20px;
@@ -45,10 +36,6 @@
 
     &__message {
       max-width: 387px;
-    }
-
-    &__right {
-      display: flex;
     }
   }
 

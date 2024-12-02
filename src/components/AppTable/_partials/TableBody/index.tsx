@@ -1,17 +1,11 @@
-import React, { ReactNode } from 'react';
+import React from 'react';
 
 import truncateData from '../../../../utils/helpers/general/truncateData';
-import Styles from './TableBody.module.scss';
 import { ContentType } from '../../AppTable.types';
-interface ITableBody {
-  allowKeyArr: string[];
-  tableIndex: number;
-  content: ContentType;
-  hasOnclick?: (rowData: ContentType) => void;
-  actionButton?: ReactNode;
-  handleActionButtonClick?: (id: string) => void;
-  hasActionButton?: boolean;
-}
+import { ITableBody } from './TableBody.types';
+
+import Styles from './TableBody.module.scss';
+
 const TableBody = ({
   allowKeyArr,
   tableIndex,

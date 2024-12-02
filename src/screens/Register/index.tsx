@@ -4,16 +4,16 @@ import { Link, useNavigate } from 'react-router-dom';
 
 import { useAppDispatch } from '../../redux/hooks';
 import useToast from '../../utils/helpers/general/useToast';
-
+import { register } from '../../redux/slices/auth/features';
+import { ERROR_OCCURED_MESSAGE } from '../../utils/constant';
 import { InputField, PasswordStrengthMeter, StyledButton } from '../../components';
 import AuthBackground from '../../components/AuthBackground';
 import { passwordValidation } from './Register.validation';
+
 import { ReactComponent as RadioCheckSuccessIcon } from '../../assets/images/radio-check-success-icon.svg';
 import { ReactComponent as RadioCheckErrorIcon } from '../../assets/images/radio-check-fail-icon.svg';
 
 import RegisterStyles from './register.module.scss';
-import { register } from '../../redux/slices/auth/features';
-import { ERROR_OCCURED_MESSAGE } from '../../utils/constant';
 
 const Register = () => {
   const dispatch = useAppDispatch();
@@ -24,15 +24,8 @@ const Register = () => {
   const [isUpperError, setIsUpperError] = useState<boolean>(true);
   const [isLowerError, setIsLowerError] = useState<boolean>(true);
   const [isSpecialError, setIsSpecialError] = useState<boolean>(true);
-  const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [isPasswordFocused, setIsPasswordFocused] = useState(false);
-
-  useEffect(() => {
-    if (error) {
-      toast.error(error);
-    }
-  }, [error, setError]);
 
   const registerFormik = useFormik({
     validationSchema: passwordValidation,

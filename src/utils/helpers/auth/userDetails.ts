@@ -1,4 +1,5 @@
 import { useEffect, useRef } from 'react';
+
 import { useAppDispatch } from '../../../redux/hooks';
 import { fetchUserDataUtility } from '../../hooks/auth/fetchUserDataUtility';
 import { getUserTokenCookie } from './cookieUtility';

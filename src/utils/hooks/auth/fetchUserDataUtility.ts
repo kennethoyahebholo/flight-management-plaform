@@ -19,5 +19,6 @@ export const fetchUserDataUtility = async (dispatch: ReturnType<typeof useAppDis
     }
   } catch (err) {
     dispatchAlert(ERROR_OCCURED_MESSAGE);
+    console.log(err);
   }
 };

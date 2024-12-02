@@ -1,5 +1,7 @@
+import { ReactNode } from 'react';
+
 export interface IEmptyTableRecord {
-  icon?: any;
+  icon?: ReactNode;
   title?: string;
   subtitle?: string;
 }

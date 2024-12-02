@@ -1,8 +1,9 @@
 import React, { ReactNode } from 'react';
+
 import Modal from '../../../components/Modal';
+import { StyledButton } from '../../../components';
 
 import ResponseModalStyles from './ResponseModal.module.scss';
-import { StyledButton } from '../../../components';
 
 interface IResponseModal {
   isShow: boolean;

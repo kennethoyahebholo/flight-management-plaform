@@ -4,11 +4,12 @@ import { Link, useNavigate } from 'react-router-dom';
 
 import { AuthBackground, InputField, StyledButton } from '../../components';
 import { loginValidationSchema } from './loginValidationSchema.validation';
-import CheckIcon from '../../assets/svg_component/CheckIcon';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import { login } from '../../redux/slices/auth/features';
 import { ERROR_OCCURED_MESSAGE } from '../../utils/constant';
 import useToast from '../../utils/helpers/general/useToast';
+
+import CheckIcon from '../../assets/svg_component/CheckIcon';
 
 import styles from './Login.module.scss';
 

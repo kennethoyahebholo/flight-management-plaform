@@ -19,8 +19,6 @@ const SidebarModal = ({ isShowSidebarModal, onClickAwaySidebarModal }: ISidebarM
       childrenClassName={SideModalStyles.sidebarModal__children}
       onClickAway={onClickAwaySidebarModal}
       isTopIcon={false}
-      isShowBackToLogin={false}
-      isShowBackButton={false}
       isShowCloseIcon={false}
       isShowBottomLogo={false}>
       <Sidebar />

@@ -8,16 +8,12 @@
   color: white;
   border: 1px solid;
   background: linear-gradient(298.54deg, #10496b -7.7%, #0d405d 97.12%);
-  transition:
-    background 0.6s ease-in-out,
-    transform 0.3s ease-in-out,
-    box-shadow 0.3s ease-in-out;
-  // transition: background 0.6s ease-in-out;
+  transition: background 0.6s ease-in-out;
   padding: 10px 18px;
   border-radius: 8px;
   font-size: 16px;
   line-height: 24px;
-  // font-family: TitilliumWebSemiBold;
+  font-family: ManropeSemiBold;
   cursor: pointer;
 
   &:active {

@@ -1,12 +1,9 @@
 import React from 'react';
 
+import { ITableHeader } from './TableHeader.types';
+
 import Styles from './TableHeader.module.scss';
 
-interface ITableHeader {
-  formatLabels: Record<string, string>;
-  allowKeyArr: string[];
-  hasActionButton?: boolean;
-}
 const TableHeader = ({ formatLabels, allowKeyArr, hasActionButton }: ITableHeader) => {
   return (
     <thead className={Styles.wrapper}>
