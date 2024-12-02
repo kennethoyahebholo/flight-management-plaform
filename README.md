@@ -1,46 +1,120 @@
-# Getting Started with Create React App
+# SwitchAir
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A frontend application designed to manage flight information, allowing users to create, update, and view flight details through seamless integration with a provided API. The project focuses on delivering a responsive and user-friendly interface to streamline flight management tasks.
 
-## Available Scripts
+## Table of Contents
 
-In the project directory, you can run:
+1. [Setup Instructions](#setup-instructions)
+2. [Assumptions](#assumptions)
+3. [Running the Application Locally](#running-the-application-locally)
+4. [Running Tests Locally](#running-tests-locally)
+5. [Folder Structure](#folder-structure)
+6. [Technologies Used](#technologies-used)
 
-### `npm start`
+## Setup Instructions
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+1. **Clone the repository**
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+   First, clone the repository from GitHub:
 
-### `npm test`
+   ```bash
+   git clone https://github.com/kennethoyahebholo/flight-management-platform.git
+   cd flight-management-platform
+   ```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+2. **Install Dependencies**
 
-### `npm run build`
+   The project uses npm to manage dependencies. Run one of the following commands to install the necessary dependencies:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+   ```bash
+   npm install
+   ```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+3. **Environment Variables**
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+   create a .env file in the root of the project and add the necessary keys. Here’s an example .env file format:
 
-### `npm run eject`
+   REACT_APP_USER_TOKEN_KEY=userToken
+   REACT_APP_ENV=dev
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## Assumptions
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Before running the application, please ensure the following:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+- The application is designed to run in a local development environment using **Node.js** and **React**.
+- The frontend is built with **TypeScript** and the testing is done using **Playwright** (for integration tests) and **Jest** (for unit tests).
+- **Node.js** version 16 or later is installed on your machine.
+- The tests are categorized as follows:
+  - **Unit Tests**: Written using **Jest** and located in the `/src/tests/unit/` directory.
+  - **Integration Tests**: Written using **Playwright** and stored in the `/src/tests/e2e/` directory.
+- **Playwright** tests are compatible with modern browsers such as **Chrome**, **Firefox**, and **Safari**.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+## Running the Application Locally
 
-## Learn More
+1. Start the development server
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+After installing dependencies, you can start the development server by running:
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+```bash
+npm run dev
+```
+
+2. Build the project for production
+
+```bash
+npm run build
+```
+
+## Running Tests Locally
+
+Running Jest Unit Tests
+
+To run unit tests using Jest, simply run the following command:
+
+```bash
+npm test
+```
+
+Running Playwright Integration Tests
+
+To run Playwright tests (integration tests), execute the following command:
+
+    ```bash
+
+npx playwright test
+
+```
+
+This will run all the Playwright tests defined in /src/tests/e2e/.
+
+Note: Make sure that the development server is running before running Playwright tests to test against a live server.
+
+## Folder Structure
+
+Here is an overview of the folder structure:
+
+/src
+/components - React components
+/redux - Redux store and slices
+/tests
+/e2e - Playwright integration tests
+/utils - Utility functions and helpers
+/public - Static files like index.html
+/.env - Environment variables
+/package.json - Project dependencies and scripts
+/jest.config.js - Jest configuration
+/playwright.config.ts - Playwright configuration
+
+## Technologies Used
+
+The following technologies were used to build and maintain this project:
+
+- **React**: A JavaScript library for building user interfaces.
+- **TypeScript**: A statically typed superset of JavaScript that enhances development with type safety.
+- **Redux**: A state management library for handling application state in a predictable manner.
+- **Jest**: A testing framework for running unit tests and ensuring code reliability.
+- **Playwright**: A framework for running end-to-end (e2e) tests across modern web browsers.
+- **CSS Modules**: A modular CSS solution for scoped and reusable styles within React components.
+- **Prettier**: An opinionated code formatter to ensure consistent code style across the project.
+- **ESLint**: A static analysis tool to identify and fix problematic patterns in JavaScript/TypeScript code.
+```
