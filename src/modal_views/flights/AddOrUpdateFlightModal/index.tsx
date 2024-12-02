@@ -5,7 +5,6 @@ import moment from 'moment';
 import { IAddOrUpdateFlightModal, IFormData } from './AddOrUpdateFlightModal.types';
 import { AddOrUpdateFlightsModalValidationSchema } from './AddOrUpdateFlightsModal.validation';
 
-import AddOrUpdateFlightModalStyles from './AddOrUpdateFlightModal.module.scss';
 import useToast from '../../../utils/helpers/general/useToast';
 import { DateInput, InputField, Modal, StyledButton } from '../../../components';
 import { useAppDispatch, useAppSelector } from '../../../redux/hooks';
@@ -16,6 +15,50 @@ import {
 } from '../../../redux/slices/flights/features';
 import { ERROR_OCCURRED_MESSAGE } from '../../../utils/constant';
 import { setActiveFlightsModal } from '../../../redux/slices/flights';
+import { ToastType } from '../../../screens/global.types';
+
+import AddOrUpdateFlightModalStyles from './AddOrUpdateFlightModal.module.scss';
+
+export const handleUpdateFlightDetails = async (
+  {
+    code,
+    capacity,
+    departureDate,
+    flightId
+  }: { code: string; capacity: number; departureDate: string; flightId: string },
+  dispatch: ReturnType<typeof useAppDispatch>,
+  toast: ToastType
+) => {
+  const actionResult = await dispatch(
+    updateFlightDetails({ code, capacity, departureDate, flightId })
+  );
+  if (updateFlightDetails.fulfilled.match(actionResult)) {
+    const { id } = actionResult.payload;
+    if (id) {
+      dispatch(setActiveFlightsModal('addOrUpdateFlightsSuccessModal'));
+    }
+  } else if (updateFlightDetails.rejected.match(actionResult)) {
+    const errorMessage = actionResult.error?.message || ERROR_OCCURRED_MESSAGE;
+    toast.error(errorMessage);
+  }
+};
+
+export const handleCreateFlightWithNoPhoto = async (
+  { code, capacity, departureDate }: { code: string; capacity: number; departureDate: string },
+  dispatch: ReturnType<typeof useAppDispatch>,
+  toast: ToastType
+) => {
+  const actionResult = await dispatch(createFlight({ code, capacity, departureDate }));
+  if (createFlight.fulfilled.match(actionResult)) {
+    const { id } = actionResult.payload;
+    if (id) {
+      dispatch(setActiveFlightsModal('addOrUpdateFlightsSuccessModal'));
+    }
+  } else if (createFlight.rejected.match(actionResult)) {
+    const errorMessage = actionResult.error?.message || ERROR_OCCURRED_MESSAGE;
+    toast.error(errorMessage);
+  }
+};
 
 const AddOrUpdateFlightModal = ({
   isShowAddOrUpdateFlightsModal,
@@ -55,7 +98,8 @@ const AddOrUpdateFlightModal = ({
       if (createOrUpdateFlightApiData?.isEditDetails) {
         handleUpdateFlightDetails(
           { ...variables, flightId: createOrUpdateFlightApiData?.flightId as string },
-          dispatch
+          dispatch,
+          toast
         );
         return;
       }
@@ -85,33 +129,10 @@ const AddOrUpdateFlightModal = ({
         }
       } else {
         // If no image, just handle the flight creation without photo
-        handleCreateFlightWithNoPhoto({ ...variables }, dispatch);
+        handleCreateFlightWithNoPhoto({ ...variables }, dispatch, toast);
       }
     }
   });
-
-  const handleUpdateFlightDetails = async (
-    {
-      code,
-      capacity,
-      departureDate,
-      flightId
-    }: { code: string; capacity: number; departureDate: string; flightId: string },
-    dispatch: ReturnType<typeof useAppDispatch>
-  ) => {
-    const actionResult = await dispatch(
-      updateFlightDetails({ code, capacity, departureDate, flightId })
-    );
-    if (updateFlightDetails.fulfilled.match(actionResult)) {
-      const { id } = actionResult.payload;
-      if (id) {
-        dispatch(setActiveFlightsModal('addOrUpdateFlightsSuccessModal'));
-      }
-    } else if (updateFlightDetails.rejected.match(actionResult)) {
-      const errorMessage = actionResult.error?.message || ERROR_OCCURRED_MESSAGE;
-      toast.error(errorMessage);
-    }
-  };
 
   const handleCreateFlightWithPhoto = async (
     {
@@ -131,22 +152,6 @@ const AddOrUpdateFlightModal = ({
         dispatch(setActiveFlightsModal('addOrUpdateFlightsSuccessModal'));
       }
     } else if (createFlightWithPhoto.rejected.match(actionResult)) {
-      const errorMessage = actionResult.error?.message || ERROR_OCCURRED_MESSAGE;
-      toast.error(errorMessage);
-    }
-  };
-
-  const handleCreateFlightWithNoPhoto = async (
-    { code, capacity, departureDate }: { code: string; capacity: number; departureDate: string },
-    dispatch: ReturnType<typeof useAppDispatch>
-  ) => {
-    const actionResult = await dispatch(createFlight({ code, capacity, departureDate }));
-    if (createFlight.fulfilled.match(actionResult)) {
-      const { id } = actionResult.payload;
-      if (id) {
-        dispatch(setActiveFlightsModal('addOrUpdateFlightsSuccessModal'));
-      }
-    } else if (createFlight.rejected.match(actionResult)) {
       const errorMessage = actionResult.error?.message || ERROR_OCCURRED_MESSAGE;
       toast.error(errorMessage);
     }

@@ -1,12 +1,10 @@
 import axios from 'axios';
-
 import { getUserTokenCookie, removeUserTokenCookie } from '../helpers/auth/cookieUtility';
 import { refreshToken } from '../../redux/slices/auth/features';
 import { store } from '../../redux/store';
-import { API_BASE_URL } from './config';
 
 const api = axios.create({
-  baseURL: API_BASE_URL
+  baseURL: 'http://localhost:3000'
 });
 
 let isRefreshing = false;

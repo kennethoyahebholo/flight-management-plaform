@@ -2,23 +2,29 @@
 import { waitFor } from '@testing-library/react';
 import { PayloadAction } from '@reduxjs/toolkit';
 import { useNavigate } from 'react-router-dom';
-import { handleLogin } from '..';
-import { login } from '../../../redux/slices/auth/features';
-import { ERROR_OCCURRED_MESSAGE } from '../../../utils/constant';
+import { handleCreateFlightWithNoPhoto } from '..';
+import { createFlight } from '../../../../redux/slices/flights/features';
+import { ERROR_OCCURRED_MESSAGE } from '../../../../utils/constant';
 
 // Mock dependencies
 jest.mock('react-router-dom', () => ({
   useNavigate: jest.fn()
 }));
-jest.mock('../../../redux/slices/auth/features', () => ({
-  login: jest.fn()
+jest.mock('../../../../redux/slices/flights/features', () => ({
+  createFlight: jest.fn()
 }));
-jest.mock('../../../utils/helpers/general/useToast', () => jest.fn());
+jest.mock('../../../../redux/slices/flights', () => ({
+  setActiveFlightsModal: jest.fn() // Mock the setActiveFlightsModal
+}));
+jest.mock('../../../../utils/helpers/general/useToast', () => jest.fn());
 
 const mockNavigate = jest.fn();
-const mockUseToast = jest.requireMock('../../../utils/helpers/general/useToast');
+const mockUseToast = jest.requireMock('../../../../utils/helpers/general/useToast');
+const mockSetActiveFlightsModal = jest.requireMock(
+  '../../../../redux/slices/flights'
+).setActiveFlightsModal;
 
-describe('handleLogin', () => {
+describe('handleCreateFlightWithNoPhoto', () => {
   const dispatch = jest.fn();
   const toast = {
     success: jest.fn(),
@@ -31,17 +37,17 @@ describe('handleLogin', () => {
     jest.clearAllMocks();
   });
 
-  it('should dispatch login, show success toast, and navigate on successful login', async () => {
+  it('should dispatch createFlight, show success toast', async () => {
     // Mock successful dispatch response
     const mockActionResult = {
-      type: 'auth/login/fulfilled',
-      payload: { id: '123', email: 'test@example.com' },
+      type: 'create/flights/fulfilled',
+      payload: { id: '134' },
       meta: {}
     };
 
-    // Mock login.fulfilled.match
-    login.fulfilled = {
-      type: 'auth/login/fulfilled',
+    // Mock createFlight.fulfilled.match
+    createFlight.fulfilled = {
+      type: 'create/flights/fulfilled',
       match: jest.fn(
         (
           action: unknown
@@ -58,7 +64,7 @@ describe('handleLogin', () => {
           return (
             typeof action === 'object' &&
             action !== null &&
-            (action as PayloadAction).type === 'auth/login/fulfilled'
+            (action as PayloadAction).type === 'create/flights/fulfilled'
           );
         }
       ) as any
@@ -66,33 +72,34 @@ describe('handleLogin', () => {
 
     dispatch.mockResolvedValue(mockActionResult);
 
-    await handleLogin('test@example.com', 'password123', dispatch, mockNavigate, toast);
+    await handleCreateFlightWithNoPhoto(
+      { code: 'cdfrgg', capacity: 20, departureDate: '2020-10-23' },
+      dispatch,
+      toast
+    );
 
     expect(dispatch).toHaveBeenCalledWith(
-      login({ email: 'test@example.com', password: 'password123' })
+      createFlight({ code: 'gthjik', capacity: 20, departureDate: '2020-10-23' })
     );
 
     // Ensure the dispatch resolved successfully
     expect(dispatch).toHaveReturnedWith(Promise.resolve(mockActionResult));
 
     await waitFor(() => {
-      expect(toast.success).toHaveBeenCalledWith(
-        'You have successfully signed in. Redirecting to your dashboard...'
-      );
-      expect(mockNavigate).toHaveBeenCalledWith('/dashboard');
+      expect(mockSetActiveFlightsModal).toHaveBeenCalledWith('addOrUpdateFlightsSuccessModal');
     });
   });
 
-  it('should dispatch login and show error toast on login failure', async () => {
+  it('should dispatch deleteFlightDetails and show error toast on deleteFlightDetails failure', async () => {
     // Mock rejected dispatch response
     const mockActionResult = {
-      type: 'auth/login/rejected',
-      error: { message: 'Invalid credentials' }
+      type: 'create/flights/rejected',
+      error: { message: 'Error message' }
     };
 
-    // Mock login.rejected.match
-    login.rejected = {
-      type: 'auth/login/rejected',
+    // Mock createFlight.rejected.match
+    createFlight.rejected = {
+      type: 'create/flights/rejected',
       match: jest.fn(
         (
           action: unknown
@@ -109,7 +116,7 @@ describe('handleLogin', () => {
           return (
             typeof action === 'object' &&
             action !== null &&
-            (action as PayloadAction).type === 'auth/login/rejected'
+            (action as PayloadAction).type === 'create/flights/rejected'
           );
         }
       ) as any
@@ -117,31 +124,35 @@ describe('handleLogin', () => {
 
     dispatch.mockResolvedValue(mockActionResult);
 
-    await handleLogin('test@example.com', 'wrongpassword', dispatch, mockNavigate, toast);
+    await handleCreateFlightWithNoPhoto(
+      { code: 'cdfrgg', capacity: 20, departureDate: '2020-10-23' },
+      dispatch,
+      toast
+    );
 
     expect(dispatch).toHaveBeenCalledWith(
-      login({ email: 'test@example.com', password: 'wrongpassword' })
+      createFlight({ code: 'gthjik', capacity: 20, departureDate: '' })
     );
 
     // Ensure the dispatch resolved successfully
     expect(dispatch).toHaveReturnedWith(Promise.resolve(mockActionResult));
 
     await waitFor(() => {
-      expect(toast.error).toHaveBeenCalledWith('Invalid credentials');
+      expect(toast.error).toHaveBeenCalledWith('Error message');
       expect(mockNavigate).not.toHaveBeenCalled();
     });
   });
 
-  it('should show default error message if no error message is provided on login failure', async () => {
+  it('should show default error message if no error message is provided on deleteFlightDetails failure', async () => {
     // Mock rejected dispatch response with no error message
     const mockActionResult = {
-      type: 'auth/login/rejected',
+      type: 'create/flights/rejected',
       error: {}
     };
 
-    // Mock login.rejected.match
-    login.rejected = {
-      type: 'auth/login/rejected',
+    // Mock createFlight.rejected.match
+    createFlight.rejected = {
+      type: 'create/flights/rejected',
       match: jest.fn(
         (
           action: unknown
@@ -158,7 +169,7 @@ describe('handleLogin', () => {
           return (
             typeof action === 'object' &&
             action !== null &&
-            (action as PayloadAction).type === 'auth/login/rejected'
+            (action as PayloadAction).type === 'create/flights/rejected'
           );
         }
       ) as any
@@ -166,10 +177,14 @@ describe('handleLogin', () => {
 
     dispatch.mockResolvedValue(mockActionResult);
 
-    await handleLogin('test@example.com', 'wrongpassword', dispatch, mockNavigate, toast);
+    await handleCreateFlightWithNoPhoto(
+      { code: 'cdfrgg', capacity: 20, departureDate: '2020-10-23' },
+      dispatch,
+      toast
+    );
 
     expect(dispatch).toHaveBeenCalledWith(
-      login({ email: 'test@example.com', password: 'wrongpassword' })
+      createFlight({ code: 'gthjik', capacity: 20, departureDate: '' })
     );
 
     // Ensure the dispatch resolved successfully

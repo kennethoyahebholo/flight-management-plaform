@@ -11,8 +11,28 @@ import { ERROR_OCCURRED_MESSAGE } from '../../../utils/constant';
 import useToast from '../../../utils/helpers/general/useToast';
 import { setRefetchGetFlightsData } from '../../../redux/slices/flights';
 import CautionIcon from '../../../assets/svg_component/CautionIcon';
+import { ToastType } from '../../../screens/global.types';
 
 import DeleteFlightModalStyles from './DeleteFlightModal.module.scss';
+
+export const handleDeleteFlight = async (
+  id: string,
+  dispatch: ReturnType<typeof useAppDispatch>,
+  navigate: ReturnType<typeof useNavigate>,
+  toast: ToastType,
+  onCloseDeleteFlightModal: () => void
+) => {
+  const actionResult = await dispatch(deleteFlightDetails({ flightId: id }));
+  if (deleteFlightDetails.fulfilled.match(actionResult)) {
+    toast.success('Deleted Successfully');
+    navigate('/dashboard/flights/all?page=1');
+    dispatch(setRefetchGetFlightsData(true));
+    onCloseDeleteFlightModal();
+  } else if (deleteFlightDetails.rejected.match(actionResult)) {
+    const errorMessage = actionResult.error?.message || ERROR_OCCURRED_MESSAGE;
+    toast.error(errorMessage);
+  }
+};
 
 const DeleteFlightModal = ({
   showDeleteFlightModal,
@@ -25,19 +45,6 @@ const DeleteFlightModal = ({
   const navigate = useNavigate();
   const toast = useToast();
   const { isDeletingFlightDetails } = useAppSelector((state) => state.flights);
-
-  const handleDeleteFlight = async (id: string, dispatch: ReturnType<typeof useAppDispatch>) => {
-    const actionResult = await dispatch(deleteFlightDetails({ flightId: id }));
-    if (deleteFlightDetails.fulfilled.match(actionResult)) {
-      toast.success('Deleted Successfully');
-      navigate('/dashboard/flights/all?page=1');
-      dispatch(setRefetchGetFlightsData(true));
-      onCloseDeleteFlightModal();
-    } else if (deleteFlightDetails.rejected.match(actionResult)) {
-      const errorMessage = actionResult.error?.message || ERROR_OCCURRED_MESSAGE;
-      toast.error(errorMessage);
-    }
-  };
 
   return (
     <Modal
@@ -69,7 +76,13 @@ const DeleteFlightModal = ({
           <StyledButton
             disabled={isDeletingFlightDetails}
             onClick={() =>
-              handleDeleteFlight(createOrUpdateFlightApiData?.flightId as string, dispatch)
+              handleDeleteFlight(
+                createOrUpdateFlightApiData?.flightId as string,
+                dispatch,
+                navigate,
+                toast,
+                onCloseDeleteFlightModal
+              )
             }
             title={isDeletingFlightDetails ? 'Deleting...' : 'Confirm'}
             className={DeleteFlightModalStyles.DeleteFlightModal__secondButton}

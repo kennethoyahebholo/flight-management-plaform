@@ -2,8 +2,8 @@
 import { waitFor } from '@testing-library/react';
 import { PayloadAction } from '@reduxjs/toolkit';
 import { useNavigate } from 'react-router-dom';
-import { handleLogin } from '..';
-import { login } from '../../../redux/slices/auth/features';
+import { handleRegister } from '..';
+import { register } from '../../../redux/slices/auth/features';
 import { ERROR_OCCURRED_MESSAGE } from '../../../utils/constant';
 
 // Mock dependencies
@@ -11,14 +11,14 @@ jest.mock('react-router-dom', () => ({
   useNavigate: jest.fn()
 }));
 jest.mock('../../../redux/slices/auth/features', () => ({
-  login: jest.fn()
+  register: jest.fn()
 }));
 jest.mock('../../../utils/helpers/general/useToast', () => jest.fn());
 
 const mockNavigate = jest.fn();
 const mockUseToast = jest.requireMock('../../../utils/helpers/general/useToast');
 
-describe('handleLogin', () => {
+describe('handleRegister', () => {
   const dispatch = jest.fn();
   const toast = {
     success: jest.fn(),
@@ -31,17 +31,17 @@ describe('handleLogin', () => {
     jest.clearAllMocks();
   });
 
-  it('should dispatch login, show success toast, and navigate on successful login', async () => {
+  it('should dispatch register, show success toast, and navigate on successful register', async () => {
     // Mock successful dispatch response
     const mockActionResult = {
-      type: 'auth/login/fulfilled',
+      type: 'auth/register/fulfilled',
       payload: { id: '123', email: 'test@example.com' },
       meta: {}
     };
 
-    // Mock login.fulfilled.match
-    login.fulfilled = {
-      type: 'auth/login/fulfilled',
+    // Mock register.fulfilled.match
+    register.fulfilled = {
+      type: 'auth/register/fulfilled',
       match: jest.fn(
         (
           action: unknown
@@ -58,7 +58,7 @@ describe('handleLogin', () => {
           return (
             typeof action === 'object' &&
             action !== null &&
-            (action as PayloadAction).type === 'auth/login/fulfilled'
+            (action as PayloadAction).type === 'auth/register/fulfilled'
           );
         }
       ) as any
@@ -66,33 +66,31 @@ describe('handleLogin', () => {
 
     dispatch.mockResolvedValue(mockActionResult);
 
-    await handleLogin('test@example.com', 'password123', dispatch, mockNavigate, toast);
+    await handleRegister('ken', 'test@example.com', 'password123', dispatch, mockNavigate, toast);
 
     expect(dispatch).toHaveBeenCalledWith(
-      login({ email: 'test@example.com', password: 'password123' })
+      register({ name: 'ken', email: 'test@example.com', password: 'password123' })
     );
 
     // Ensure the dispatch resolved successfully
     expect(dispatch).toHaveReturnedWith(Promise.resolve(mockActionResult));
 
     await waitFor(() => {
-      expect(toast.success).toHaveBeenCalledWith(
-        'You have successfully signed in. Redirecting to your dashboard...'
-      );
-      expect(mockNavigate).toHaveBeenCalledWith('/dashboard');
+      expect(toast.success).toHaveBeenCalledWith('Account created successfully');
+      expect(mockNavigate).toHaveBeenCalledWith('/');
     });
   });
 
-  it('should dispatch login and show error toast on login failure', async () => {
+  it('should dispatch register and show error toast on register failure', async () => {
     // Mock rejected dispatch response
     const mockActionResult = {
-      type: 'auth/login/rejected',
+      type: 'auth/register/rejected',
       error: { message: 'Invalid credentials' }
     };
 
-    // Mock login.rejected.match
-    login.rejected = {
-      type: 'auth/login/rejected',
+    // Mock register.rejected.match
+    register.rejected = {
+      type: 'auth/register/rejected',
       match: jest.fn(
         (
           action: unknown
@@ -109,7 +107,7 @@ describe('handleLogin', () => {
           return (
             typeof action === 'object' &&
             action !== null &&
-            (action as PayloadAction).type === 'auth/login/rejected'
+            (action as PayloadAction).type === 'auth/register/rejected'
           );
         }
       ) as any
@@ -117,10 +115,10 @@ describe('handleLogin', () => {
 
     dispatch.mockResolvedValue(mockActionResult);
 
-    await handleLogin('test@example.com', 'wrongpassword', dispatch, mockNavigate, toast);
+    await handleRegister('ken', 'test@example.com', 'password123', dispatch, mockNavigate, toast);
 
     expect(dispatch).toHaveBeenCalledWith(
-      login({ email: 'test@example.com', password: 'wrongpassword' })
+      register({ name: 'ken', email: 'test@example.com', password: 'password123' })
     );
 
     // Ensure the dispatch resolved successfully
@@ -132,16 +130,16 @@ describe('handleLogin', () => {
     });
   });
 
-  it('should show default error message if no error message is provided on login failure', async () => {
+  it('should show default error message if no error message is provided on register failure', async () => {
     // Mock rejected dispatch response with no error message
     const mockActionResult = {
-      type: 'auth/login/rejected',
+      type: 'auth/register/rejected',
       error: {}
     };
 
-    // Mock login.rejected.match
-    login.rejected = {
-      type: 'auth/login/rejected',
+    // Mock register.rejected.match
+    register.rejected = {
+      type: 'auth/register/rejected',
       match: jest.fn(
         (
           action: unknown
@@ -158,7 +156,7 @@ describe('handleLogin', () => {
           return (
             typeof action === 'object' &&
             action !== null &&
-            (action as PayloadAction).type === 'auth/login/rejected'
+            (action as PayloadAction).type === 'auth/register/rejected'
           );
         }
       ) as any
@@ -166,10 +164,10 @@ describe('handleLogin', () => {
 
     dispatch.mockResolvedValue(mockActionResult);
 
-    await handleLogin('test@example.com', 'wrongpassword', dispatch, mockNavigate, toast);
+    await handleRegister('ken', 'test@example.com', 'password123', dispatch, mockNavigate, toast);
 
     expect(dispatch).toHaveBeenCalledWith(
-      login({ email: 'test@example.com', password: 'wrongpassword' })
+      register({ name: 'ken', email: 'test@example.com', password: 'password123' })
     );
 
     // Ensure the dispatch resolved successfully

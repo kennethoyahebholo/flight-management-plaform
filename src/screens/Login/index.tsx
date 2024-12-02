@@ -8,10 +8,28 @@ import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import { login } from '../../redux/slices/auth/features';
 import { ERROR_OCCURRED_MESSAGE } from '../../utils/constant';
 import useToast from '../../utils/helpers/general/useToast';
+import { ToastType } from '../global.types';
 
 import CheckIcon from '../../assets/svg_component/CheckIcon';
 
 import styles from './Login.module.scss';
+
+export const handleLogin = async (
+  email: string,
+  password: string,
+  dispatch: ReturnType<typeof useAppDispatch>,
+  navigate: ReturnType<typeof useNavigate>,
+  toast: ToastType
+) => {
+  const actionResult = await dispatch(login({ email, password }));
+  if (login?.fulfilled?.match(actionResult)) {
+    toast.success('You have successfully signed in. Redirecting to your dashboard...');
+    navigate('/dashboard');
+  } else if (login?.rejected?.match(actionResult)) {
+    const errorMessage = actionResult?.error?.message || ERROR_OCCURRED_MESSAGE;
+    toast.error(errorMessage);
+  }
+};
 
 const Login = () => {
   const navigate = useNavigate();
@@ -26,27 +44,9 @@ const Login = () => {
       password: ''
     },
     onSubmit: async (values) => {
-      handleLogin(values?.email, values?.password, dispatch);
+      handleLogin(values?.email, values?.password, dispatch, navigate, toast);
     }
   });
-
-  const handleLogin = async (
-    email: string,
-    password: string,
-    dispatch: ReturnType<typeof useAppDispatch>
-  ) => {
-    const actionResult = await dispatch(login({ email, password }));
-    if (login.fulfilled.match(actionResult)) {
-      const { id, email } = actionResult.payload;
-      if (id && email) {
-        toast.success('You have successfully signed in. Redirecting to your dashboard...');
-        navigate('/dashboard');
-      }
-    } else if (login.rejected.match(actionResult)) {
-      const errorMessage = actionResult.error?.message || ERROR_OCCURRED_MESSAGE;
-      toast.error(errorMessage);
-    }
-  };
 
   return (
     <AuthBackground

@@ -2,29 +2,52 @@ import React, { useState, useEffect } from 'react';
 import { useFormik } from 'formik';
 import { Link, useNavigate } from 'react-router-dom';
 
-import { useAppDispatch } from '../../redux/hooks';
+import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import useToast from '../../utils/helpers/general/useToast';
 import { register } from '../../redux/slices/auth/features';
 import { ERROR_OCCURRED_MESSAGE } from '../../utils/constant';
 import { InputField, PasswordStrengthMeter, StyledButton } from '../../components';
 import AuthBackground from '../../components/AuthBackground';
 import { passwordValidation } from './Register.validation';
+import { ToastType } from '../global.types';
 
 import { ReactComponent as RadioCheckSuccessIcon } from '../../assets/images/radio-check-success-icon.svg';
 import { ReactComponent as RadioCheckErrorIcon } from '../../assets/images/radio-check-fail-icon.svg';
 
 import RegisterStyles from './register.module.scss';
 
+export const handleRegister = async (
+  name: string,
+  email: string,
+  confirmPassword: string,
+  dispatch: ReturnType<typeof useAppDispatch>,
+  navigate: ReturnType<typeof useNavigate>,
+  toast: ToastType
+) => {
+  const actionResult = await dispatch(register({ name, email, password: confirmPassword }));
+  if (register.fulfilled.match(actionResult)) {
+    const { email, id } = actionResult.payload;
+    if (email && id) {
+      toast.success('Account created successfully');
+
+      navigate(`/`);
+    }
+  } else if (register.rejected.match(actionResult)) {
+    const errorMessage = actionResult.error?.message || ERROR_OCCURRED_MESSAGE;
+    toast.error(errorMessage);
+  }
+};
+
 const Register = () => {
   const dispatch = useAppDispatch();
   const toast = useToast();
   const navigate = useNavigate();
+  const { isRegisteringUser } = useAppSelector((state) => state.auth);
 
   const [isEightError, setIsEightError] = useState<boolean>(true);
   const [isUpperError, setIsUpperError] = useState<boolean>(true);
   const [isLowerError, setIsLowerError] = useState<boolean>(true);
   const [isSpecialError, setIsSpecialError] = useState<boolean>(true);
-  const [isLoading, setIsLoading] = useState(false);
   const [isPasswordFocused, setIsPasswordFocused] = useState(false);
 
   const registerFormik = useFormik({
@@ -36,32 +59,9 @@ const Register = () => {
     },
     onSubmit: async (values) => {
       const { fullName, email, password } = values;
-      handleRegister(fullName, email, password, dispatch);
+      handleRegister(fullName, email, password, dispatch, navigate, toast);
     }
   });
-
-  const handleRegister = async (
-    name: string,
-    email: string,
-    confirmPassword: string,
-    dispatch: ReturnType<typeof useAppDispatch>
-  ) => {
-    setIsLoading(true);
-    const actionResult = await dispatch(register({ name, email, password: confirmPassword }));
-    if (register.fulfilled.match(actionResult)) {
-      const { email, id } = actionResult.payload;
-      if (email && id) {
-        toast.success('Account created successfully');
-
-        navigate(`/`);
-        setIsLoading(false);
-      }
-    } else if (register.rejected.match(actionResult)) {
-      const errorMessage = actionResult.error?.message || ERROR_OCCURRED_MESSAGE;
-      toast.error(errorMessage);
-      setIsLoading(false);
-    }
-  };
 
   useEffect(() => {
     passwordValidation
@@ -175,9 +175,9 @@ const Register = () => {
 
           <StyledButton
             className={RegisterStyles.register__button}
-            title={isLoading ? 'Registering...' : 'Register'}
+            title={isRegisteringUser ? 'Registering...' : 'Register'}
             type="submit"
-            disabled={registerFormik.isSubmitting || isLoading}
+            disabled={registerFormik.isSubmitting || isRegisteringUser}
           />
         </form>
 
