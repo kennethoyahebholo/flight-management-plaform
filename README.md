@@ -91,17 +91,20 @@ Note: Make sure that the development server is running before running Playwright
 
 Here is an overview of the folder structure:
 
-/src
-/components - React components
-/redux - Redux store and slices
-/tests
-/e2e - Playwright integration tests
-/utils - Utility functions and helpers
-/public - Static files like index.html
-/.env - Environment variables
-/package.json - Project dependencies and scripts
-/jest.config.js - Jest configuration
-/playwright.config.ts - Playwright configuration
+### Explanation:
+
+- **/src**: Contains all the source code for the application.
+  - **/components**: React components used across the app.
+  - **/redux**: Contains Redux store, slices, and actions.
+  - **/tests**: Holds all test files.
+    - **/e2e**: Playwright-based end-to-end tests.
+    - **/unit**: Jest-based unit tests.
+  - **/utils**: Helper functions and utilities.
+- **/public**: Contains static assets like `index.html`, images, etc.
+- **/.env**: Environment variables configuration file.
+- **/package.json**: Project dependencies, scripts, and metadata.
+- **/jest.config.js**: Configuration file for Jest.
+- **/playwright.config.ts**: Configuration file for Playwright.
 
 ## Technologies Used
 
@@ -115,7 +118,3 @@ The following technologies were used to build and maintain this project:
 - **CSS Modules**: A modular CSS solution for scoped and reusable styles within React components.
 - **Prettier**: An opinionated code formatter to ensure consistent code style across the project.
 - **ESLint**: A static analysis tool to identify and fix problematic patterns in JavaScript/TypeScript code.
-
-```
-
-```
