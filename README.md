@@ -125,3 +125,4 @@ The following technologies were used to build and maintain this project:
 - **CSS Modules**: A modular CSS solution for scoped and reusable styles within React components.
 - **Prettier**: An opinionated code formatter to ensure consistent code style across the project.
 - **ESLint**: A static analysis tool to identify and fix problematic patterns in JavaScript/TypeScript code.
+- **Axios**: A promise-based HTTP client for making requests to a backend server, often used for API interactions.
