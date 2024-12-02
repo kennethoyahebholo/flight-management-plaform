@@ -126,3 +126,7 @@ The following technologies were used to build and maintain this project:
 - **Prettier**: An opinionated code formatter to ensure consistent code style across the project.
 - **ESLint**: A static analysis tool to identify and fix problematic patterns in JavaScript/TypeScript code.
 - **Axios**: A promise-based HTTP client for making requests to a backend server, often used for API interactions.
+- **VSCode**: A powerful code editor used for development, with features like IntelliSense, debugging, and Git integration.
+- **Yup**: A JavaScript schema validation library used for form validation and ensuring data integrity.
+- **Formik**: A library for building forms in React with minimal effort, including validation and state management.
+- **Moment**: A library for parsing, validating, manipulating, and formatting dates in JavaScript.
