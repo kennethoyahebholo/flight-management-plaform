@@ -73,6 +73,16 @@ const FlightDetails = () => {
       id: 3,
       key: 'Departure Date',
       value: flightData?.departureDate || '*******'
+    },
+    {
+      id: 4,
+      key: 'Status',
+      value: flightData?.status || '*******'
+    },
+    {
+      id: 5,
+      key: 'ID',
+      value: flightData?.id || '*******'
     }
   ];
 
